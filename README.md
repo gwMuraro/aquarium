@@ -33,3 +33,6 @@ Lancez Visual Studio Code avec la commande ```code``` pour vérifier que les red
 
 ### Configurer votre environnement de travail
 
+# Contributeurs
+* Gwendal MURARO - Chef de projet, analyste/concepteur, intégrateur et développeur
+
