@@ -109,7 +109,9 @@ sudo docker exec -it <id_du_container> bash
 
 ```
 
+## Après la configuration 
 
+Pour les utilisateur de Linux, dans le dossier `docker`, il existe un script bash `run_docker.sh` qui permet de simplifier les commandes docker (qui vous paraitront redondantes). Il reprend la génération du conteneur, sa connexion et sa sauvegarde. N'hésitez pas à y jeter un oeil, à le copier-coller sur votre machine hôte pour lancer le conteneur sans trop de manipulations. 
 
 
 
