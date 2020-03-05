@@ -32,4 +32,4 @@ RUN export uid=1000 gid=1000 && \
 USER developer
 
 # Définition du dossier courrant 
-WORKDIR /aquarium
+WORKDIR /home/developer
