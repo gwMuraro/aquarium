@@ -134,4 +134,4 @@ Maintenant que vous êtes prêts à développer, voici une petite liste des exte
 # Contributeurs
 
 * Gwendal MURARO - Chef de projet, analyste/concepteur, intégrateur et développeur
-
+* Aymeric Adenot - testeur et déeloppeur 
