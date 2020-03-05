@@ -52,6 +52,10 @@ Normalement, à ce stade là vous devriez être entré dans votre conteneur. Pou
 
 # Configurer votre environnement de travail
 
+## Avant tout, vous faites partie du projet...
+
+Demandez moi en message privé sur github ou par mail de vous accepter dans les développeurs du projet.
+
 ## Configurer votre GitHub
 Le container ne vous connais pas (du moins il ne connait pas votre Git). Il faut donc le configurer avec :
 
