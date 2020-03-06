@@ -9,7 +9,7 @@ largeur_fenetre, hauteur_fenetre = 800, 600
 fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 pygame.display.set_caption("Aquarium")
 # Ajout d'un fond d'écran 
-fond = pygame.image.load("src/images/fond.jpg")
+fond = pygame.image.load("src/images/fond.jpg") # 1200 x 800
 # Fenêtre ---
 
 # --- Horloge
@@ -21,7 +21,7 @@ FPS = 30
 
 # --- Création des poissons
 # un petit test de la classe des poissons
-nb_poissons = 10
+nb_poissons = 3
 poissons = list()
 for i in range(nb_poissons) : 
     x = random.randint(0, largeur_fenetre - 60)
@@ -49,10 +49,12 @@ while bContinue :
 
     # --- Dessin 
     fenetre.fill((0,0,0))
-    fenetre.blit(fond, (0,0))
+    # calcul de translation pour x : 0 - (largeur_image - largeur_fenetre) / 2
+    fenetre.blit(fond, (-200, -100)) # centrage par le calcul de la translation à faire
     SpriteBase.sTabTousLesSprites.draw(fenetre)
     pygame.display.flip()
     # Dessin ---
+
 
     # --- Horloge
     horloge.tick(FPS)
