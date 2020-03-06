@@ -1,4 +1,5 @@
 import pygame
+import utils.Poisson as Poisson
 
 class SpriteBase(pygame.sprite.Sprite) : 
     
@@ -28,10 +29,21 @@ class SpritePoisson(SpriteBase) :
     
     def __init__(self, x, y, largeur, hauteur, chemin_image) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
-        self.velocite = 3
+        self.velocite = 5
+        self.poisson = Poisson.Poisson(50, self.velocite)
     
     def deplacement(self) : 
-        self.rect.x += self.velocite
+        nouveau_x_y = self.poisson.calculDeplacement(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
+        #print(self.rect.x)
+        self.rect.x += nouveau_x_y[0]
+        self.rect.y += nouveau_x_y[1]
+        
 
     def redimensionner(self, largeur, hauteur) : 
         self.image = pygame.transform.scale(self.image, (largeur, hauteur))
+        self.rect.width = largeur
+        self.rect.height = hauteur
+
+    def setVelocite(self, velocite) : 
+        self.velocite = velocite
+        self.poisson.velocite = velocite

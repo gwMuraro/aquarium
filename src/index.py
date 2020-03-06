@@ -1,11 +1,12 @@
-import pygame
+import pygame, sys, random
 from utils.ObjetsSprite import *
+from utils.Direction import *
 
 pygame.init()
 
 # --- Fenêtre 
-largeur, hauteur = 800, 600
-fenetre = pygame.display.set_mode((largeur, hauteur))
+largeur_fenetre, hauteur_fenetre = 800, 600
+fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 pygame.display.set_caption("Aquarium")
 # Fenêtre ---
 
@@ -13,14 +14,19 @@ pygame.display.set_caption("Aquarium")
 # L'utilisation des images par secondes nous permettent de déterminer 
 # les secondes dans la mainloop
 horloge = pygame.time.Clock()
-FPS = 24 
+FPS = 30
 # Horloge ---
 
-# --- Image
+# --- Création des poissons
 # un petit test de la classe des poissons
-poisson = SpritePoisson(0,100, 60, 40, "src/images/fish.png")
-poisson.redimensionner(60,40)
-# Image ---
+nb_poissons = 10
+poissons = list()
+for i in range(nb_poissons) : 
+    x = random.randint(0, largeur_fenetre - 60)
+    y = random.randint(0, hauteur_fenetre - 40)
+    poissons.append(SpritePoisson(x, y, 60, 40, "src/images/fish.png"))
+    poissons[i].redimensionner(60,40)
+# Création des poissons ---
 
 
 # ========== MAIN LOOP =========
@@ -35,7 +41,8 @@ while bContinue :
     # Evenements ---
 
     # --- Mouvement
-    poisson.deplacement()
+    for poisson in poissons : 
+        poisson.deplacement()
     # Mouvement --- 
 
     # --- Dessin 
