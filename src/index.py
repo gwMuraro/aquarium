@@ -8,6 +8,8 @@ pygame.init()
 largeur_fenetre, hauteur_fenetre = 800, 600
 fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 pygame.display.set_caption("Aquarium")
+# Ajout d'un fond d'écran 
+fond = pygame.image.load("src/images/fond.jpg")
 # Fenêtre ---
 
 # --- Horloge
@@ -47,6 +49,7 @@ while bContinue :
 
     # --- Dessin 
     fenetre.fill((0,0,0))
+    fenetre.blit(fond, (0,0))
     SpriteBase.sTabTousLesSprites.draw(fenetre)
     pygame.display.flip()
     # Dessin ---

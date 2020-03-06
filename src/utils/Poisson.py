@@ -20,7 +20,7 @@ class Poisson :
         avance_x = 0 
         avance_y = 0 
         bChange_direction = False
-        print(hauteur)
+
         # Changement de direction si on atteint une fin d'inertie
         if self.inertie >= self.inertie_max : 
             bChange_direction = True

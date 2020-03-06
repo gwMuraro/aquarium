@@ -34,7 +34,6 @@ class SpritePoisson(SpriteBase) :
     
     def deplacement(self) : 
         nouveau_x_y = self.poisson.calculDeplacement(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
-        #print(self.rect.x)
         self.rect.x += nouveau_x_y[0]
         self.rect.y += nouveau_x_y[1]
         
