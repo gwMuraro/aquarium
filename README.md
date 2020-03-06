@@ -129,6 +129,7 @@ Maintenant que vous êtes prêts à développer, voici une petite liste des exte
 
 * Pygame 
     * Documentation officielle : https://www.pygame.org/docs/
+    * Excellent tutoriel : <a href="https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB1l23YFY137LtPcstXKyuQ"> youtube.com</a>
     
 * GitHub : 
     * Documentation officielle : https://git-scm.com/docs
