@@ -89,7 +89,7 @@ sudo docker ps
 # sauvegarde du container actif en image. 
 sudo docker commit <id_du_container>
 ```
-Faites cela à chaque fin de sessions (je trouverai un moyen de l'automatiser). 
+Faites cela à chaque fin de sessions (cf. *Après la configuration*, le point suivant). 
 
 Pour la session suivante vous partirez de l'identifiant de l'image que vous avez sauvegardée : 
 
