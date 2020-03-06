@@ -1,5 +1,5 @@
 import pygame
-
+from utils.ObjetsSprite import *
 
 pygame.init()
 
@@ -17,9 +17,11 @@ FPS = 24
 # Horloge ---
 
 # --- Image
-image_poisson = pygame.image.load("src/images/fish.png")
-image_poisson = pygame.transform.scale(image_poisson, (60, 40))
+# un petit test de la classe des poissons
+poisson = SpritePoisson(0,100, 60, 40, "src/images/fish.png")
+poisson.redimensionner(60,40)
 # Image ---
+
 
 # ========== MAIN LOOP =========
 bContinue = True
@@ -32,8 +34,13 @@ while bContinue :
             bContinue = False
     # Evenements ---
 
+    # --- Mouvement
+    poisson.deplacement()
+    # Mouvement --- 
+
     # --- Dessin 
-    fenetre.blit(image_poisson, (200, 200)) # dessine le poisson
+    fenetre.fill((0,0,0))
+    SpriteBase.sTabTousLesSprites.draw(fenetre)
     pygame.display.flip()
     # Dessin ---
 
