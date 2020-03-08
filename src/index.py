@@ -61,7 +61,9 @@ while bContinue :
         collision = piranha.rect.collidelist([x.rect for x in poissons])
         if piranha.estPredateur() and collision != -1 :
             print("Le piranha mange le poisson " + str(collision))
-            poissons.pop(collision)
+            SpriteBase.sTabTousLesSprites.remove(poissons[collision])
+            poissons.remove(poissons[collision]) # suppression du poisson 
+            
     # --- Collision
     
 
