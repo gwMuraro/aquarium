@@ -21,13 +21,17 @@ FPS = 30
 
 # --- Création des poissons
 # un petit test de la classe des poissons
-nb_poissons = 3
+nb_poissons = 1
 poissons = list()
 for i in range(nb_poissons) : 
     x = random.randint(0, largeur_fenetre - 60)
     y = random.randint(0, hauteur_fenetre - 40)
-    poissons.append(SpritePoisson(x, y, 60, 40, "src/images/fish.png"))
+    poissons.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
     poissons[i].redimensionner(60,40)
+    poissons[i].poisson.inertie_max = 10
+
+
+
 # Création des poissons ---
 
 
