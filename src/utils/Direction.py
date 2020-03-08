@@ -5,14 +5,30 @@
 
 class CoefDirection() : 
     # définition des fonctions utiles 
-    def NORD () :       return (0, -1, 0)
-    def NORD_EST() :    return (1, -1, 1)
-    def EST () :        return (1,  0, 2)
-    def SUD_EST () :    return (1,  1, 3)
-    def SUD () :        return (0,  1, 4)
-    def SUD_OUEST () :  return (-1, 1, 5)
-    def OUEST () :      return (-1, 0, 6)
-    def NORD_OUEST () : return (-1, -1, 7)
+    def NORD () :       
+        return (0, -1, 0)
+
+    def NORD_EST() :
+        return (1/2, -1/2, 1)
+
+    def EST () :
+        return (1,  0, 2)
+
+    def SUD_EST () :    
+        return (1/2,  1/2, 3)
+
+    def SUD () :        
+        return (0,  1, 4)
+
+    def SUD_OUEST () :  
+        return (-1/2, 1/2, 5)
+
+    def OUEST () :      
+        return (-1, 0, 6)
+
+    def NORD_OUEST () : 
+        return (-1/2, -1/2, 7)
+
 
     sTabDirections = [NORD(), NORD_EST(), EST(), SUD_EST(), SUD(), SUD_OUEST(), OUEST(), NORD_OUEST()]
 

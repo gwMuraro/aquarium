@@ -1,6 +1,7 @@
 import pygame
-import utils.Poisson as Poisson
-import utils.Direction as Direction
+from utils.Direction import *
+from utils.Poisson import *
+from utils.DecorateurPredation import *
 
 class SpriteBase(pygame.sprite.Sprite) : 
     
@@ -30,7 +31,7 @@ class SpriteBase(pygame.sprite.Sprite) :
         self.image = pygame.transform.scale(self.image, (largeur, hauteur))
         self.rect.width = largeur
         self.rect.height = hauteur
-        
+
 class SpritePoisson(SpriteBase) : 
     
     DIRECTIONS_DROITE = [1, 2, 3]
@@ -41,7 +42,8 @@ class SpritePoisson(SpriteBase) :
     def __init__(self, x, y, largeur, hauteur, chemin_image) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
         self.velocite = 5
-        self.poisson = Poisson.Poisson(50, self.velocite)
+        self.poisson = Poisson(50, self.velocite)
+        self.redimensionner(largeur, hauteur)
         self.transposition()
     
     def deplacement(self) : 
@@ -79,3 +81,44 @@ class SpritePoisson(SpriteBase) :
         self.redimensionner(self.rect.width, self.rect.height)
 
 
+class SpritePiranha(SpriteBase) :
+    
+    DIRECTIONS_DROITE = [1, 2, 3]
+    DIRECTIONS_GAUCHE = [5, 6, 7]
+    CHEMIN_PIRANHA_VERS_GAUCHE = "src/images/piranha.jpg"
+    CHEMIN_PIRANHA_VERS_DROITE = "src/images/piranha.jpg"
+
+    def __init__(self, x, y, largeur, hauteur, chemin_image) :
+        SpriteBase.__init__(self, x, y, largeur, hauteur, SpritePiranha.CHEMIN_PIRANHA_VERS_DROITE)
+        self.velocite = 5
+        self.poisson = Poisson(50, self.velocite)
+        self.redimensionner(largeur, hauteur)
+
+    def deplacement(self) : 
+        # Ancienne direction 
+        ancienne_direction = self.poisson.coef_direction[2]
+
+        # Calcul du nouveau positionnement sur l'écran 
+        nouveau_x_y = self.poisson.calculDeplacement(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
+
+        # Positionnement 
+        self.rect.x += nouveau_x_y[0]
+        self.rect.y += nouveau_x_y[1]
+
+        # ---- TODO : Optimiser ce systeme de Vérification de direction 
+        # Nouvelle direction 
+        nouvelle_direction = self.poisson.coef_direction[2]
+
+        # Transposition verticale si besoin 
+        # if ancienne_direction != nouvelle_direction : 
+        #     self.transposition()
+        # ----
+    
+    def setVelocite(self, velocite) : 
+        self.velocite = velocite
+        self.poisson.velocite = velocite
+    
+    def devientPredateur(self) : 
+        if type(self.poisson).__name__ != DecorationPredateur.__name__ :
+            self.poisson = DecorationPredateur(self.poisson)
+            print("DEBUG : Je devient prédateur")
