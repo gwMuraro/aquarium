@@ -28,7 +28,7 @@ for i in range(nb_poissons) :
     y = random.randint(0, hauteur_fenetre - 40)
     poissons.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
     poissons[i].redimensionner(60,40)
-    poissons[i].poisson.inertie_max = 10
+    poissons[i].poisson.inertie_max = 10 # DEBUG
 
 
 

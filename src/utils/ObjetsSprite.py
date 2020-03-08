@@ -42,6 +42,7 @@ class SpritePoisson(SpriteBase) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
         self.velocite = 5
         self.poisson = Poisson.Poisson(50, self.velocite)
+        self.transposition()
     
     def deplacement(self) : 
         # Ancienne direction 
