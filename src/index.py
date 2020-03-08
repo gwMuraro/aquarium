@@ -36,6 +36,7 @@ for i in range(nb_poissons) :
 nb_piranha = 1
 piranhas = list()
 piranhas.append(SpritePiranha(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+piranhas[0].devientPredateur()
 # Création des poissons ---
 
 # ========== MAIN LOOP =========
@@ -54,8 +55,15 @@ while bContinue :
         vivant.deplacement()
     # Mouvement --- 
 
-    # Collision --- 
+    # Collision (aka Prédation) --- 
+    for piranha in piranhas : 
+        # renvoi l'indice du poisson touché, -1 s'il n'a rien trouvé
+        collision = piranha.rect.collidelist([x.rect for x in poissons])
+        if piranha.estPredateur() and collision != -1 :
+            print("Le piranha mange le poisson " + str(collision))
+            poissons.pop(collision)
     # --- Collision
+    
 
 
     # --- Dessin 

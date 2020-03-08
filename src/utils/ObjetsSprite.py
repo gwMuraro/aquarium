@@ -42,7 +42,7 @@ class SpritePoisson(SpriteBase) :
     def __init__(self, x, y, largeur, hauteur, chemin_image) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
         self.velocite = 5
-        self.poisson = Poisson(50, self.velocite)
+        self.poisson = DecorationProie(Poisson(50, self.velocite))
         self.redimensionner(largeur, hauteur)
         self.transposition()
     
@@ -80,6 +80,8 @@ class SpritePoisson(SpriteBase) :
         # redimensionnement de la nouvelle image 
         self.redimensionner(self.rect.width, self.rect.height)
 
+    def estPredateur(self) : 
+        return type(self.poisson).__name__ == DecorationPredateur.__name__
 
 class SpritePiranha(SpriteBase) :
     
@@ -122,3 +124,6 @@ class SpritePiranha(SpriteBase) :
         if type(self.poisson).__name__ != DecorationPredateur.__name__ :
             self.poisson = DecorationPredateur(self.poisson)
             print("DEBUG : Je devient prédateur")
+    
+    def estPredateur(self) : 
+        return type(self.poisson).__name__ == DecorationPredateur.__name__
