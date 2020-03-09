@@ -13,7 +13,7 @@ class ContenantVivant() :
 
         # Gestion de l'argent
         self.argent_genere = 10
-        self.periode_generation = 10 + random.randint(1, 10)
+        self.periode_generation = 2 + random.randint(1, 10)
         self.curseur_generation_argent = 0
 
     def calculDeplacement(self, x_actuel, y_actuel, largeur, hauteur) : 

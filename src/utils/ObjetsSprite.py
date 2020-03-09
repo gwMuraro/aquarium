@@ -2,6 +2,7 @@ import pygame
 from utils.Direction import *
 from utils.Poisson import *
 from utils.DecorateurPredation import *
+#from utils.ControlleurJeu import *
 
 class SpriteBase(pygame.sprite.Sprite) : 
     
@@ -32,7 +33,7 @@ class SpriteBase(pygame.sprite.Sprite) :
         self.rect.width = largeur
         self.rect.height = hauteur
 
-    def clique(self) :
+    def clique(self, contexte) :
         print("clique sur un sprite sans comportement")
 
 class SpritePoisson(SpriteBase) : 
@@ -130,5 +131,9 @@ class SpriteBoutton(SpriteBase) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
         self.redimensionner(largeur, hauteur)
     
-    def clique(self) :
+    def clique(self, contexte) :
         print("Clique sur ajouté")
+        if contexte.cagnotte >= 50 : 
+            contexte.cagnotte -= 50
+            contexte.ajouteVivant()
+        
