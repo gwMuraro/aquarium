@@ -5,7 +5,7 @@ Ce projet à pour but de donner une petite expérience de développement collabo
 
 Dans ce document nous allons voir comment mettre en place notre environnement de travail et comment utiliser les outils qui sont à notre disposition. 
 
-> ***Disclaimer** : Certaines technologies choisies ne sont pas exploités à 100 % (Docker et Git par exemple). L'objectif est avant tout de se faire une première main sur cesdites technologies en les manipulants, et ainsi aquérir une expérience suffisante pour la suite du cursus universitaire*
+> ***Disclaimer** : Certaines technologies choisies ne sont pas exploités à 100 % (Docker et Git par exemple). L'objectif est avant tout de se faire une première main sur cesdites technologies en les manipulants, et ainsi aquérir une expérience suffisante pour la suite du cursus universitaire. À ce titre, Docker n'est pas nécessaire au développement et Visual Studio Code n'est pas le seul IDE possible. Il reste cependant mandatoire d'installer python 3, pip 3, pygame, git, et d'avoir un compte Github.*
 
 # Installation de l'environnement Docker 
 

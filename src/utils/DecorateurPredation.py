@@ -9,6 +9,13 @@ class ContenantVivant() :
         self.inertie_max = inertie_max
         self.velocite = velocite
         self.coef_direction = self.changeDirection()
+        self.faim = 100
+
+        # Gestion de l'argent
+        self.argent_genere = 10
+        self.periode_generation = 10 + random.randint(1, 10)
+        self.curseur_generation_argent = 0
+
 
     def calculDeplacement(self, x_actuel, y_actuel, largeur, hauteur) : 
         # update de l'inertie 
@@ -48,6 +55,15 @@ class ContenantVivant() :
     def changeDirection(self) :
         self.inertie = 0 
         return CoefDirection.sTabDirections[random.randint(0,7)]
+    
+    def generationArgent(self) : 
+        argent = 0 
+        if self.curseur_generation_argent == self.periode_generation : 
+            argent = self.argent_genere
+            self.curseur_generation_argent = 0 
+        else :
+            self.curseur_generation_argent += 1 
+        return argent
 
 class Decorateur(ContenantVivant) : 
     def __init__ (self, contenantViant):
@@ -58,6 +74,8 @@ class DecorationPredateur(Decorateur) :
     def __init__ (self, contenantVivant):
         Decorateur.__init__(self, ContenantVivant)
         print("Je suis un prédateur")
+
+        
 
 class DecorationProie(Decorateur) : 
     def __init__(self, ContenantVivant) :
