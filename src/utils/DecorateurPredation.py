@@ -16,7 +16,6 @@ class ContenantVivant() :
         self.periode_generation = 10 + random.randint(1, 10)
         self.curseur_generation_argent = 0
 
-
     def calculDeplacement(self, x_actuel, y_actuel, largeur, hauteur) : 
         # update de l'inertie 
         self.inertie += 1        
@@ -56,6 +55,12 @@ class ContenantVivant() :
         self.inertie = 0 
         return CoefDirection.sTabDirections[random.randint(0,7)]
     
+    def estPredateur(self) : 
+        return False
+
+    def estProie(self) : 
+        return False
+
     def generationArgent(self) : 
         argent = 0 
         if self.curseur_generation_argent == self.periode_generation : 
@@ -69,15 +74,19 @@ class Decorateur(ContenantVivant) :
     def __init__ (self, contenantViant):
         ContenantVivant.__init__(self)
         self.contenantViant = contenantViant
-
+    
 class DecorationPredateur(Decorateur) :
     def __init__ (self, contenantVivant):
         Decorateur.__init__(self, ContenantVivant)
         print("Je suis un prédateur")
 
+    def estPredateur (self) : 
+        return True
         
-
 class DecorationProie(Decorateur) : 
     def __init__(self, ContenantVivant) :
         Decorateur.__init__(self, ContenantVivant)
         print("je suis une victime")
+
+    def estProie(self) : 
+        return True

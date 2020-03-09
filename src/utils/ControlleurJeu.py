@@ -1,0 +1,64 @@
+import pygame
+import random
+from utils.ObjetsSprite import *
+from utils.DecorateurPredation import *
+
+class ControlleurJeu() :
+    
+    def __init__(self) : 
+        self.largeur_fenetre = 800
+        self.hauteur_fenetre = 600
+        
+        self.FPS = 30
+        self.une_seconde = self.FPS * 1
+        self.cpt_FPS = 0
+
+        self.nombre_poissons = 10
+        self.nombre_piranhas = 3 
+        self.cagnotte = 0
+
+        self.vivants = list()
+
+    def auClique(self) : 
+        pass
+
+    def creationVivants(self) : 
+        for i in range(self.nombre_poissons) : 
+            x = random.randint(0, self.largeur_fenetre - 60)
+            y = random.randint(0, self.hauteur_fenetre - 40)
+            self.vivants.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+            self.vivants[i].poisson.inertie_max = 60
+            self.vivants[i].poisson.velocite = random.randint(2, 4)
+
+        for i in range(self.nombre_piranhas) : 
+            x = random.randint(0, self.largeur_fenetre - 60)
+            y = random.randint(0, self.hauteur_fenetre - 40)
+            self.vivants.append(SpritePiranha(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+            self.vivants[len(self.vivants) - 1].devientPredateur()
+        
+
+    def actionsPeriodiques(self) : 
+        # pour tous les vivants
+        for vivant in self.vivants : 
+            
+            # GESTION DU DEPLACEMENT
+            vivant.deplacement()
+            
+            # GESTION DE LA PREDATION
+            if vivant.poisson.estPredateur() : 
+                # si c'est un prédateur, on vérifie qu'il n'ait pas mangé de chose
+                collision = vivant.rect.collidelist([x.rect for x in self.vivants])
+                if collision != -1 and self.vivants[collision].poisson.estProie():
+                    #print("Le piranha mange le poisson " + str(collision))
+                    SpriteBase.sTabTousLesSprites.remove(self.vivants[collision])
+                    self.vivants.remove(self.vivants[collision]) 
+
+        # GESTION DE L'ECONOMIE EN FONCTION DES SECONDES
+        if self.cpt_FPS == self.FPS :
+            for vivant in self.vivants : 
+                self.cagnotte += vivant.poisson.generationArgent()
+        
+        # GESTION DE L'HORLOGE
+        self.cpt_FPS += 1
+        if self.cpt_FPS == self.FPS : 
+            self.cpt_FPS = 0

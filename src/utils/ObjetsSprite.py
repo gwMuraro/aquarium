@@ -83,9 +83,6 @@ class SpritePoisson(SpriteBase) :
         # redimensionnement de la nouvelle image 
         self.redimensionner(self.rect.width, self.rect.height)
 
-    def estPredateur(self) : 
-        return type(self.poisson).__name__ == DecorationPredateur.__name__
-
 class SpritePiranha(SpriteBase) :
     
     DIRECTIONS_DROITE = [1, 2, 3]
@@ -126,10 +123,7 @@ class SpritePiranha(SpriteBase) :
     def devientPredateur(self) : 
         if type(self.poisson).__name__ != DecorationPredateur.__name__ :
             self.poisson = DecorationPredateur(self.poisson)
-            print("DEBUG : Je devient prédateur")
-    
-    def estPredateur(self) : 
-        return type(self.poisson).__name__ == DecorationPredateur.__name__
+            print("DEBUG : Je devient prédateur") 
 
 class SpriteBoutton(SpriteBase) : 
     def __init__(self, x, y, largeur, hauteur, chemin_image) : 

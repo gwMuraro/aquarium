@@ -2,6 +2,7 @@ import pygame
 import random
 from utils.ObjetsSprite import *
 from utils.DecorateurPredation import *
+from utils.ControlleurJeu import * 
 #from utils.Direction import *
 
 
@@ -9,17 +10,18 @@ from utils.DecorateurPredation import *
 pygame.init()
 police = pygame.font.SysFont("ubuntu", 15)
 
+# Création du controlleur 
+controlleur = ControlleurJeu()
+
 # --- Fenêtre 
-largeur_fenetre, hauteur_fenetre = 800, 600
-fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
+fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre))
 pygame.display.set_caption("Aquarium")
 # Ajout d'un fond d'écran 
 fond = pygame.image.load("src/images/fond.jpg") # 1200 x 800
 # Fenêtre ---
 
 # --- Horloge
-# L'utilisation des images par secondes nous permettent de déterminer 
-# les secondes dans la mainloop
+# L'utilisation des images par secondes nous permettent de déterminer les secondes dans la mainloop
 horloge = pygame.time.Clock()
 FPS = 30
 une_seconde = FPS 
@@ -31,36 +33,15 @@ bouton_plus = SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
 # Création de l'IHM ---
 
 # --- Création des poissons
-# un petit test de la classe des poissons
-nb_poissons = 10
-poissons = list()
-for i in range(nb_poissons) : 
-    x = random.randint(0, largeur_fenetre - 60)
-    y = random.randint(0, hauteur_fenetre - 40)
-    poissons.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
-    poissons[i].poisson.inertie_max = 60
-    poissons[i].poisson.velocite = random.randint(2, 4)
-
-# Création d'un piranha
-nb_piranha = 2
-piranhas = list()
-for i in range(nb_piranha) : 
-    x = random.randint(0, largeur_fenetre - 60)
-    y = random.randint(0, hauteur_fenetre - 40)
-    piranhas.append(SpritePiranha(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
-piranhas[0].devientPredateur()
+controlleur.creationVivants()
 # Création des poissons ---
-
-# Création de l'argent --- 
-cagnotte = 0
-# --- Création de l'argent  
 
 # ========== MAIN LOOP =========
 bContinue = True
 while bContinue : 
     pygame.time.delay(10)
 
-    # --- Evenements 
+    # --- Evenements pygame
     for event in pygame.event.get() :
         if event.type == pygame.QUIT : 
             bContinue = False
@@ -73,30 +54,14 @@ while bContinue :
             if len(sprites_cliquees) > 0 : 
                 # Action de la sprite cliquée
                 sprites_cliquees[0].clique()
+    # Evenements pygame ---
 
-
-    # Evenements ---
-
-    # --- Mouvement 
-    for vivant in poissons + piranhas : 
-        vivant.deplacement()
-    # Mouvement --- 
-
-
-    # TEST DE COLLISION %%%%%%%%%%%
-    for piranha in piranhas : 
-        # renvoi l'indice du poisson touché, -1 s'il n'a rien trouvé
-        collision = piranha.rect.collidelist([x.rect for x in poissons])
-        if piranha.estPredateur() and collision != -1 :
-            print("Le piranha mange le poisson " + str(collision))
-            SpriteBase.sTabTousLesSprites.remove(poissons[collision])
-            poissons.remove(poissons[collision]) 
-    # %%%%%%%%%%% TEST DE COLLISION
-    
-    # --- Cagnotte 
-    if cpt_FPS % une_seconde == 0 : 
-        for vivant in poissons + piranhas : 
-            cagnotte += vivant.poisson.generationArgent()
+    controlleur.actionsPeriodiques()
+   
+    # # --- Cagnotte 
+    # if cpt_FPS % une_seconde == 0 : 
+    #     for vivant in poissons + piranhas : 
+    #         cagnotte += vivant.poisson.generationArgent()
             
     # Cagnotte ---
 
@@ -107,7 +72,7 @@ while bContinue :
     fenetre.blit(fond, (-200, -100)) # centrage par le calcul de la translation à faire
     
     # affichage de la cagnotte 
-    libelle = police.render("Cagnotte : " + str(cagnotte), 1, (255, 255, 0)) 
+    libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 
     fenetre.blit(libelle, (10, 10))
     
     # affichage des sprites 
@@ -118,9 +83,6 @@ while bContinue :
 
     # --- Horloge
     horloge.tick(FPS)
-    cpt_FPS += 1
-    if cpt_FPS == FPS : 
-        cpt_FPS = 0
     # Horloge ---
 
 print("Nous quittons notre aquarium")
