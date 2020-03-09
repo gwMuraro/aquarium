@@ -32,6 +32,9 @@ class SpriteBase(pygame.sprite.Sprite) :
         self.rect.width = largeur
         self.rect.height = hauteur
 
+    def clique(self) :
+        print("clique sur un sprite sans comportement")
+
 class SpritePoisson(SpriteBase) : 
     
     DIRECTIONS_DROITE = [1, 2, 3]
@@ -127,3 +130,11 @@ class SpritePiranha(SpriteBase) :
     
     def estPredateur(self) : 
         return type(self.poisson).__name__ == DecorationPredateur.__name__
+
+class SpriteBoutton(SpriteBase) : 
+    def __init__(self, x, y, largeur, hauteur, chemin_image) : 
+        SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
+        self.redimensionner(largeur, hauteur)
+    
+    def clique(self) :
+        print("Clique sur ajouté")

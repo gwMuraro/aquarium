@@ -1,6 +1,6 @@
 import pygame
 import random
-from utils.ObjetsSprite import SpriteBase, SpritePoisson, SpritePiranha
+from utils.ObjetsSprite import *
 from utils.DecorateurPredation import *
 #from utils.Direction import *
 
@@ -25,6 +25,10 @@ FPS = 30
 une_seconde = FPS 
 cpt_FPS = 0
 # Horloge ---
+
+# --- Création de l'IHM
+bouton_plus = SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
+# Création de l'IHM ---
 
 # --- Création des poissons
 # un petit test de la classe des poissons
@@ -60,6 +64,17 @@ while bContinue :
     for event in pygame.event.get() :
         if event.type == pygame.QUIT : 
             bContinue = False
+        if event.type == pygame.MOUSEBUTTONDOWN : 
+            # récupération de la position souris
+            position = pygame.mouse.get_pos()
+
+            # récupération des sprites en dessous de la souris 
+            sprites_cliquees = [x for x in SpriteBase.sTabTousLesSprites if x.rect.collidepoint(position)]
+            if len(sprites_cliquees) > 0 : 
+                # Action de la sprite cliquée
+                sprites_cliquees[0].clique()
+
+
     # Evenements ---
 
     # --- Mouvement 
