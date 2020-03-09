@@ -26,7 +26,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_poissons) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+            self.vivants.append(SpritePoisson(x, y, 60, 40))
             self.vivants[i].poisson.inertie_max = 60
             self.vivants[i].poisson.velocite = random.randint(2, 4)
 
@@ -34,7 +34,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_piranhas) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpritePiranha(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+            self.vivants.append(SpritePiranha(x, y, 60, 40))
             self.vivants[len(self.vivants) - 1].devientPredateur()
 
     def tuerLePoisson(self, poisson): 
@@ -78,10 +78,9 @@ class ControlleurJeu() :
 
                 # GESTION DE LA FAIM
                 vivant.poisson.faim -= 1
-
                 if vivant.poisson.faim <= 0 : 
                     self.tuerLePoisson(vivant)
-                    
+
         # GESTION DE L'HORLOGE
         self.cpt_FPS += 1
         if self.cpt_FPS == self.FPS : 

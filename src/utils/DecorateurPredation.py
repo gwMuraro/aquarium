@@ -14,8 +14,9 @@ class ContenantVivant() :
         self.coef_direction = self.changeDirection()
         
         # Gestion de la faim
+        self.max_faim = 30 
         self.faim = 30
-        self.seuil_appetance = int(self.faim / 3)
+        self.seuil_appetance = int(self.max_faim / 3)
         self.valeur_nutritive = 60
 
         # Gestion de l'argent
@@ -72,7 +73,10 @@ class ContenantVivant() :
         return self.faim <= self.seuil_appetance
 
     def mange(self, valeur_nutritive) : 
-        self.faim += valeur_nutritive
+        self.faim += valeur_nutritive 
+        if self.faim > self.max_faim :
+            self.faim = self.max_faim
+        
 
     def generationArgent(self) : 
         argent = 0 
