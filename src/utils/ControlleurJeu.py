@@ -52,13 +52,23 @@ class ControlleurJeu() :
             vivant.deplacement()
             
             # GESTION DE LA PREDATION
-            if vivant.poisson.estPredateur() : 
-                # si c'est un prédateur, on vérifie qu'il n'ait pas mangé de chose
-                collision = vivant.rect.collidelist([x.rect for x in self.vivants])
-                if collision != -1 and self.vivants[collision].poisson.estProie():
-                    #print("Le piranha mange le poisson " + str(collision))
-                    SpriteBase.sTabTousLesSprites.remove(self.vivants[collision])
-                    self.vivants.remove(self.vivants[collision]) 
+            
+            if vivant.poisson.estPredateur() : # on ne traite le cas que des poissons prédateurs
+                
+                # On vérifie une à une les interractions possible avec le poisson
+                for i in range(len(self.vivants)-1, -1, -1) : 
+                    
+                    # Si le prédateur est en contact avec un Sprite 
+                    if vivant.rect.colliderect(self.vivants[i].rect) : 
+                        # si le poisson en collision est une proie, on la mange 
+                        if self.vivants[i].poisson.estProie() : 
+                            SpriteBase.sTabTousLesSprites.remove(self.vivants[i])
+                            self.vivants.remove(self.vivants[i])
+
+
+
+
+
 
         # GESTION DE L'ECONOMIE EN FONCTION DES SECONDES
         if self.cpt_FPS % self.FPS == 0 :
