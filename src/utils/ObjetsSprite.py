@@ -1,8 +1,6 @@
 import pygame
 from utils.Direction import *
-from utils.Poisson import *
 from utils.DecorateurPredation import *
-#from utils.ControlleurJeu import *
 
 class SpriteBase(pygame.sprite.Sprite) : 
     

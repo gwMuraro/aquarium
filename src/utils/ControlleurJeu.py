@@ -65,11 +65,6 @@ class ControlleurJeu() :
                             SpriteBase.sTabTousLesSprites.remove(self.vivants[i])
                             self.vivants.remove(self.vivants[i])
 
-
-
-
-
-
         # GESTION DE L'ECONOMIE EN FONCTION DES SECONDES
         if self.cpt_FPS % self.FPS == 0 :
             for vivant in self.vivants : 

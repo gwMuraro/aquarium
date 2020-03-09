@@ -1,5 +1,6 @@
 import random 
 from utils.Direction import * 
+from utils.DecorateurPredation import *
 
 class ContenantVivant() : 
 
@@ -69,6 +70,10 @@ class ContenantVivant() :
         else :
             self.curseur_generation_argent += 1 
         return argent
+
+class Poisson(ContenantVivant) : 
+    def __init__(self, inertie_max=50, velocite=3) :
+       ContenantVivant.__init__(self, inertie_max=50, velocite=3)
 
 class Decorateur(ContenantVivant) : 
     def __init__ (self, contenantViant):
