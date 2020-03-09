@@ -37,6 +37,10 @@ class ControlleurJeu() :
             self.vivants.append(SpritePiranha(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
             self.vivants[len(self.vivants) - 1].devientPredateur()
 
+    def tuerLePoisson(self, poisson): 
+        SpriteBase.sTabTousLesSprites.remove(poisson)
+        self.vivants.remove(poisson)
+
     # TODO : Pattern factory peut être ici
     def ajouteVivant(self) : 
         x = random.randint(0, self.largeur_fenetre - 60)
@@ -50,26 +54,34 @@ class ControlleurJeu() :
             
             # GESTION DU DEPLACEMENT
             vivant.deplacement()
-            
+
             # GESTION DE LA PREDATION
-            
-            if vivant.poisson.estPredateur() : # on ne traite le cas que des poissons prédateurs
+            # on ne traite le cas que des poissons prédateurs et s'il a faim
+            if vivant.poisson.estPredateur() and vivant.poisson.aFaim() : 
                 
                 # On vérifie une à une les interractions possible avec le poisson
-                for i in range(len(self.vivants)-1, -1, -1) : 
-                    
+                for i in range(len(self.vivants)-1, -1, -1) :  # TODO : utiliser un foreach plutot qu'un iterateur
                     # Si le prédateur est en contact avec un Sprite 
                     if vivant.rect.colliderect(self.vivants[i].rect) : 
                         # si le poisson en collision est une proie, on la mange 
                         if self.vivants[i].poisson.estProie() : 
-                            SpriteBase.sTabTousLesSprites.remove(self.vivants[i])
-                            self.vivants.remove(self.vivants[i])
+                            vivant.poisson.mange(self.vivants[i].poisson.valeur_nutritive)
+                            self.tuerLePoisson(self.vivants[i])
+                            
 
-        # GESTION DE L'ECONOMIE EN FONCTION DES SECONDES
+        # GESTION EN FONCTION DES SECONDES
         if self.cpt_FPS % self.FPS == 0 :
+            
             for vivant in self.vivants : 
+                # GESTION DE L'ECONOMIE 
                 self.cagnotte += vivant.poisson.generationArgent()
-        
+
+                # GESTION DE LA FAIM
+                vivant.poisson.faim -= 1
+
+                if vivant.poisson.faim <= 0 : 
+                    self.tuerLePoisson(vivant)
+                    
         # GESTION DE L'HORLOGE
         self.cpt_FPS += 1
         if self.cpt_FPS == self.FPS : 

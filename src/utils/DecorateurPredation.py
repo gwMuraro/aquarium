@@ -6,11 +6,17 @@ class ContenantVivant() :
 
     def __init__ (self, inertie_max=50, velocite=3):
         self.tabDecorations = list()
+        
+        # Gestion du déplacement
         self.inertie = 0 
         self.inertie_max = inertie_max
         self.velocite = velocite
         self.coef_direction = self.changeDirection()
-        self.faim = 100
+        
+        # Gestion de la faim
+        self.faim = 30
+        self.seuil_appetance = int(self.faim / 3)
+        self.valeur_nutritive = 60
 
         # Gestion de l'argent
         self.argent_genere = 10
@@ -62,6 +68,12 @@ class ContenantVivant() :
     def estProie(self) : 
         return False
 
+    def aFaim(self): 
+        return self.faim <= self.seuil_appetance
+
+    def mange(self, valeur_nutritive) : 
+        self.faim += valeur_nutritive
+
     def generationArgent(self) : 
         argent = 0 
         if self.curseur_generation_argent == self.periode_generation : 
@@ -74,6 +86,8 @@ class ContenantVivant() :
 class Poisson(ContenantVivant) : 
     def __init__(self, inertie_max=50, velocite=3) :
        ContenantVivant.__init__(self, inertie_max=50, velocite=3)
+
+# ===================== PATTERN DÉCORATEUR =====================
 
 class Decorateur(ContenantVivant) : 
     def __init__ (self, contenantViant):
