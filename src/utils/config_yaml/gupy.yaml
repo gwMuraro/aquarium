@@ -1,0 +1,29 @@
+argent:
+- argentGenere
+- - 10
+- periodeGeneration
+- curseurGeneration
+- - 0
+deplacement:
+- inertie
+- - 0
+- inertieMax
+- - 50
+- velocite
+- - 3
+- direction
+- - coefDirection
+gestionFaim:
+- faimMax
+- - 30
+- faim
+- - 30
+- seuilAppetance
+- - 10.0
+- valeurNutritive
+- - 60
+predation:
+- estProie
+- - true
+- estPredateur
+- - false
