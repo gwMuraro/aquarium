@@ -1,3 +1,6 @@
+
+from utils.ObjectSprite import ObjetsSprite 
+
 # Classe de coeficient des directions. 
 # Ils donnent les multiplicateurs à appliquer à l'axe x et y.
 # Le tuple est un triplet qui renvoi le coef_x, coef_y 

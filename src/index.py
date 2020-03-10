@@ -1,8 +1,9 @@
 import pygame
 import random
-from utils.ObjetsSprite import *
+
 from utils.DecorateurPredation import *
 from utils.ControlleurJeu import * 
+from utilis.ObjectSprite.ObjetsSprite import *
 
 # initialisation du framework
 pygame.init()

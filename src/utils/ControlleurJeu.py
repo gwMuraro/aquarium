@@ -1,8 +1,9 @@
 import pygame
 import random
 import sys
-from utils.ObjetsSprite import *
+
 from utils.DecorateurPredation import *
+from utils.ObjetsSprite import ObjetsSprite
 
 
 class ControlleurJeu() :

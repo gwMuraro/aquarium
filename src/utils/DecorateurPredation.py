@@ -100,7 +100,6 @@ class Decorateur(ContenantVivant) :
 class DecorationPredateur(Decorateur) :
     def __init__ (self, contenantVivant):
         Decorateur.__init__(self, ContenantVivant)
-        print("Je suis un prédateur")
 
     def estPredateur (self) : 
         return True
