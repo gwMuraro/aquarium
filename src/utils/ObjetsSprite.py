@@ -94,6 +94,7 @@ class SpritePiranha(SpriteBase) :
         self.velocite = 5
         self.poisson = Poisson(50, self.velocite)
         self.redimensionner(largeur, hauteur)
+        self.transposition()
 
     def deplacement(self) : 
         # Ancienne direction 

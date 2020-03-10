@@ -76,8 +76,7 @@ class ContenantVivant() :
         self.faim += valeur_nutritive 
         if self.faim > self.max_faim :
             self.faim = self.max_faim
-        
-
+    
     def generationArgent(self) : 
         argent = 0 
         if self.curseur_generation_argent == self.periode_generation : 

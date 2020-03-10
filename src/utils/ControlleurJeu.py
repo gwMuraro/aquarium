@@ -45,7 +45,7 @@ class ControlleurJeu() :
     def ajouteVivant(self) : 
         x = random.randint(0, self.largeur_fenetre - 60)
         y = random.randint(0, self.hauteur_fenetre - 40)
-        self.vivants.append(SpritePoisson(x, y, 60, 40, "src/images/poisson_vers_la_gauche.png"))
+        self.vivants.append(SpritePoisson(x, y, 60, 40))
 
     def actionsPeriodiques(self) : 
 
