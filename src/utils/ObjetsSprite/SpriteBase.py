@@ -1,11 +1,4 @@
-#
-#
-#
-
 import pygame
-
-from utils.ObjectSprite import *
-#from utils.ObjectSprite import ObjetsSprite.
 
 class SpriteBase(pygame.sprite.Sprite) : 
     

@@ -1,10 +1,6 @@
-#
-#
-#
-
-from utils.ObjectSprite import  *
-
-
+from utils.ObjetsSprite.SpriteBase import * 
+from utils.ControlleurEntites.Poisson import *
+from utils.ControlleurEntites.DecorationPredateur import *
 class SpritePiranha(SpriteBase) :
     
     DIRECTIONS_DROITE = [1, 2, 3]

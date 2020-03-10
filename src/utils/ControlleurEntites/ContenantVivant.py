@@ -1,6 +1,8 @@
 import random 
-from utils.Direction import * 
-from utils.DecorateurPredation import *
+import pygame
+import sys
+from utils.Direction import *
+
 
 class ContenantVivant() : 
 
@@ -85,29 +87,3 @@ class ContenantVivant() :
         else :
             self.curseur_generation_argent += 1 
         return argent
-
-class Poisson(ContenantVivant) : 
-    def __init__(self, inertie_max=50, velocite=3) :
-       ContenantVivant.__init__(self, inertie_max=50, velocite=3)
-
-# ===================== PATTERN DÉCORATEUR =====================
-
-class Decorateur(ContenantVivant) : 
-    def __init__ (self, contenantViant):
-        ContenantVivant.__init__(self)
-        self.contenantViant = contenantViant
-    
-class DecorationPredateur(Decorateur) :
-    def __init__ (self, contenantVivant):
-        Decorateur.__init__(self, ContenantVivant)
-
-    def estPredateur (self) : 
-        return True
-        
-class DecorationProie(Decorateur) : 
-    def __init__(self, ContenantVivant) :
-        Decorateur.__init__(self, ContenantVivant)
-        print("je suis une victime" + str(self.estProie()))
-
-    def estProie(self) : 
-        return True

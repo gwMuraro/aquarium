@@ -2,8 +2,6 @@
 .mypy_cache
 !.gitignore
 !.git
-src/utils/__pycache__/ObjetsSprite.cpython-36.pyc
-src/utils/__pycache__/Direction.cpython-36.pyc
-src/utils/__pycache__/Poisson.cpython-36.pyc
-src/utils/__pycache__
-docker/requirements.txt
+*__pycache__*
+
+

@@ -1,9 +1,6 @@
-import pygame
 import random
-import sys
-
-from utils.DecorateurPredation import *
-from utils.ObjetsSprite import ObjetsSprite
+from utils.ObjetsSprite.SpritePoisson import *
+from utils.ObjetsSprite.SpritePiranha import *
 
 
 class ControlleurJeu() :

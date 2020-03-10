@@ -1,5 +1,4 @@
-
-from utils.ObjectSprite.SpriteBase import *
+from utils.ObjetsSprite.SpriteBase import *
 
 class SpriteBoutton(SpriteBase) : 
     def __init__(self, x, y, largeur, hauteur, chemin_image) : 

@@ -1,6 +1,6 @@
-
-from utils.ObjectSprite import * 
-
+from utils.ObjetsSprite.SpriteBase import *
+from utils.ControlleurEntites.DecorationProie import *
+from utils.ControlleurEntites.Poisson import *
 
 class SpritePoisson(SpriteBase) : 
     
