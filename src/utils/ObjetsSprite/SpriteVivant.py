@@ -1,28 +1,26 @@
 from utils.ObjetsSprite.SpriteBase import * 
 from utils.ControlleurEntites.Poisson import *
 from utils.ControlleurEntites.Decorateur import *
+from utils.FileReader.ConfigSingleton import ConfigSingleton
 
 class SpriteVivant(SpriteBase) :
     
-    DIRECTIONS_DROITE = [1, 2, 3]
-    DIRECTIONS_GAUCHE = [5, 6, 7]
-    CHEMIN_PIRANHA_VERS_GAUCHE = "images/piranha_vers_la_gauche.png"
-    CHEMIN_PIRANHA_VERS_DROITE = "images/piranha_vers_la_droite.png"
-    CHEMIN_POISSON_VERS_GAUCHE = "images/poisson_vers_la_gauche.png"
-    CHEMIN_POISSON_VERS_DROITE = "images/poisson_vers_la_droite.png"
 
-    def __init__(self, x, y, largeur, hauteur, type="gupy") :
-        self.type = type
-        self.poisson = Poisson()
-        self.velocite = 5
+    def __init__(self, x, y, largeur, hauteur, type_poisson="gupy") :
 
-        if type == "gupy" : 
-            SpriteBase.__init__(self, x, y, largeur, hauteur, SpriteVivant.CHEMIN_POISSON_VERS_DROITE)
-            self.poisson.devientProie()
+        # récupération de l'instance de configuration 
+        config = ConfigSingleton.getConfig()[type_poisson]
 
-        elif type == "piranha" : 
-            SpriteBase.__init__(self, x, y, largeur, hauteur, SpriteVivant.CHEMIN_PIRANHA_VERS_DROITE)
-            self.poisson.devientPredateur()
+        print(config["affichage"])
+
+        SpriteBase.__init__(self, x, y, config["affichage"]["largeur"], config["affichage"]["hauteur"], config["affichage"]["liste_sprite_poisson"]["vers_la_gauche"])
+        self.type_poisson = type_poisson 
+
+        self.poisson = Poisson(type_poisson)
+        self.velocite = config["deplacement"]["velocite"]
+        self.directions_gauche = config["deplacement"]["direction"]["gauche"]
+        self.directions_droite = config["deplacement"]["direction"]["droite"]
+        self.chemin_images = config["affichage"]["liste_sprite_poisson"]
         
         self.redimensionner(largeur, hauteur)
         self.transposition()
@@ -54,16 +52,20 @@ class SpriteVivant(SpriteBase) :
     
     def transposition(self) :
         # Choix de la bonne sprite 
-        if self.type == "gupy" : 
-            if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_DROITE : 
-                self.image = pygame.image.load(SpriteVivant.CHEMIN_POISSON_VERS_DROITE)
-            if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_GAUCHE : 
-                self.image = pygame.image.load(SpriteVivant.CHEMIN_POISSON_VERS_GAUCHE)
-        elif self.type == "piranha":
-            if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_DROITE : 
-                self.image = pygame.image.load(SpriteVivant.CHEMIN_PIRANHA_VERS_DROITE)
-            if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_GAUCHE : 
-                self.image = pygame.image.load(SpriteVivant.CHEMIN_PIRANHA_VERS_GAUCHE)
+        # if self.type == "gupy" : 
+        #     if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_DROITE : 
+        #         self.image = pygame.image.load(SpriteVivant.CHEMIN_POISSON_VERS_DROITE)
+        #     if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_GAUCHE : 
+        #         self.image = pygame.image.load(SpriteVivant.CHEMIN_POISSON_VERS_GAUCHE)
+        # elif self.type == "piranha":
+        #     if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_DROITE : 
+        #         self.image = pygame.image.load(SpriteVivant.CHEMIN_PIRANHA_VERS_DROITE)
+        #     if self.poisson.coef_direction[2] in SpriteVivant.DIRECTIONS_GAUCHE : 
+        #         self.image = pygame.image.load(SpriteVivant.CHEMIN_PIRANHA_VERS_GAUCHE)
+        if self.poisson.coef_direction[2] in self.directions_gauche : 
+            self.image = pygame.image.load(self.chemin_images["vers_la_gauche"])
+        if self.poisson.coef_direction[2] in self.directions_droite : 
+            self.image = pygame.image.load(self.chemin_images["vers_la_droite"])
 
         # redimensionnement de la nouvelle image 
         self.redimensionner(self.rect.width, self.rect.height)

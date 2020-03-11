@@ -1,6 +1,7 @@
 import random
 import sys
 from utils.ObjetsSprite.SpriteVivant import *
+import utils.FileReader.ConfigSingleton as cs
 
 
 class ControlleurJeu() :
@@ -32,7 +33,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_piranhas) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, type="piranha"))
+            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="piranha"))
 
     def tuerLePoisson(self, poisson): 
         SpriteBase.sTabTousLesSprites.remove(poisson)
@@ -42,7 +43,7 @@ class ControlleurJeu() :
     def ajouteVivant(self) : 
         x = random.randint(0, self.largeur_fenetre - 60)
         y = random.randint(0, self.hauteur_fenetre - 40)
-        self.vivants.append(SpriteVivant(x, y, 60, 40, type="gupy"))
+        self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="gupy"))
 
     def actionsPeriodiques(self) : 
 

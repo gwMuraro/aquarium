@@ -14,18 +14,19 @@ class ConfigSingleton :
             with open(chemin_config) as fichier : 
                 self.doc_yaml = yaml.load(fichier, Loader=yaml.FullLoader)
 
-    def getConfig() : 
+    def getConfig(chemin_config = "src/utils/FileReader/config.yaml") : 
         # On envoi l'instance déjà créée 
         if ConfigSingleton.__NB_INSTANCES > 0 : 
             return ConfigSingleton.__INSTANCE_CONFIG_SINGLETON.doc_yaml
         
         # On Crée une instance, puis on l'envoie
         elif ConfigSingleton.__NB_INSTANCES == 0 : 
-            ConfigSingleton.__INSTANCE_CONFIG_SINGLETON = ConfigSingleton()
+            print("Creation de l'instance de configuration")
+            ConfigSingleton.__INSTANCE_CONFIG_SINGLETON = ConfigSingleton(chemin_config)
             return ConfigSingleton.__INSTANCE_CONFIG_SINGLETON.doc_yaml
             
 
-# # Test du pattern
+# Test du pattern
 config1 = ConfigSingleton.getConfig()
 # print("instance 1 : " + str(config1))
 
@@ -40,4 +41,4 @@ config1 = ConfigSingleton.getConfig()
 #     print("Tout est ok, la config 3 est null")
 
 # # Test avec YAML 
-print(yaml.dump(config1["piranha"]))
+print(yaml.dump(config1["piranha"]["affichage"]))
