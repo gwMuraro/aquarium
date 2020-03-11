@@ -10,6 +10,8 @@ class ContenantVivant() :
     def __init__ (self, inertie_max=50, velocite=3):
         self.tabDecorations = list()
         
+        self.type_poisson = "abstract"
+
         # Gestion du déplacement
         self.inertie = 0 
         self.inertie_max = inertie_max
@@ -90,11 +92,38 @@ class ContenantVivant() :
         return argent
 
     def devientProie(self) :
-        import utils.ControlleurEntites.Decorateur as deco 
-        if type(self).__name__ != deco.DecorationProie.__name__ :
-            self = deco.DecorationProie(self)
+        if type(self).__name__ != DecorationProie.__name__ :
+            return DecorationProie(self)
 
-    def devientPredateur(self) : 
-        import utils.ControlleurEntites.Decorateur as deco
-        if type(self).__name__ != deco.DecorationPredateur.__name__ :
-            self = deco.DecorationPredateur(self)
+    def devientPredateur(self, liste_proies) : 
+        if type(self).__name__ != DecorationPredateur.__name__ :
+            new = DecorationPredateur(self, liste_proies)
+            return new
+            
+            
+
+# ============================== ABS ==============================
+class Decorateur(ContenantVivant) : 
+    def __init__ (self, contenant_vivant):
+        ContenantVivant.__init__(self)
+        #self.contenant_vivant = contenant_vivant
+
+# ============================== Decoration ==============================
+
+class DecorationProie(Decorateur) : 
+    def __init__(self, contenant_vivant) :
+        Decorateur.__init__(self, contenant_vivant)
+        self.type_poisson = contenant_vivant.type_poisson
+    
+    def estProie(self) : 
+        return True
+
+class DecorationPredateur(Decorateur) :
+    
+    def __init__ (self, contenant_vivant, liste_proies):
+        Decorateur.__init__(self, contenant_vivant)
+        self.liste_proies = liste_proies
+        self.type_poisson = contenant_vivant.type_poisson
+
+    def estPredateur (self) : 
+        return True

@@ -25,9 +25,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_poissons) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, "gupy"))
-            self.vivants[i].poisson.inertie_max = 60
-            self.vivants[i].poisson.velocite = random.randint(2, 4)
+            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="gupy"))
 
         # creation des poissons type piranhas
         for i in range(self.nombre_piranhas) : 
@@ -54,18 +52,20 @@ class ControlleurJeu() :
             vivant.deplacement()
 
             # GESTION DE LA PREDATION
-            # on ne traite le cas que des poissons prédateurs et s'il a faim
-            if vivant.poisson.estPredateur() and vivant.poisson.aFaim() : 
+            # On ne traite le cas que des poissons prédateurs et s'il a faim
+            if vivant.poisson.estPredateur(): #and vivant.poisson.aFaim() : 
                 
                 # On vérifie une à une les interractions possible avec le poisson
                 for i in range(len(self.vivants)-1, -1, -1) :  # TODO : utiliser un foreach plutot qu'un iterateur
                     # Si le prédateur est en contact avec un Sprite 
-                    if vivant.rect.colliderect(self.vivants[i].rect) : 
+                    if vivant.rect.colliderect(self.vivants[i].rect) and vivant.poisson.aFaim(): 
+
                         # si le poisson en collision est une proie, on la mange 
-                        if self.vivants[i].poisson.estProie() : 
+                        if self.vivants[i].poisson.type_poisson in vivant.poisson.liste_proies : 
+                            
                             vivant.poisson.mange(self.vivants[i].poisson.valeur_nutritive)
                             self.tuerLePoisson(self.vivants[i])
-                            
+
 
         # GESTION EN FONCTION DES SECONDES
         if self.cpt_FPS % self.FPS == 0 :

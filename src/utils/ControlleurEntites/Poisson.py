@@ -8,9 +8,11 @@ class Poisson(ContenantVivant) :
 
         config = ConfigSingleton.getConfig()[type_poisson]
 
-        # TODO : au vu de ce qu'a fait Aymeric en sand box, il y a peut etre moyen d'améliorer qqchose ici
+        # TODO : n'y a t il pas moyen de décharger tout directement dans un objet avec yaml ? 
         # OVERRIDE CONCRET
         # Gestion du déplacement
+        self.type_poisson = type_poisson
+
         self.inertie = config["deplacement"]["inertie"]
         self.inertie_max = config["deplacement"]["inertie_max"]
         self.velocite = config["deplacement"]["velocite"]
@@ -26,9 +28,5 @@ class Poisson(ContenantVivant) :
         self.periode_generation = config["argent"]["periode_generation"]
         self.curseur_generation_argent = config["argent"]["curseur_generation"]
 
-        # Gestion de la prédation 
-        if config["predation"]["est_predateur"] == True : 
-            self.devientPredateur()
-
-        if config["predation"]["est_proie"] == True : 
-            self.devientProie()
+        
+        

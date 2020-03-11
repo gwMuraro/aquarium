@@ -27,7 +27,7 @@ class ConfigSingleton :
             
 
 # Test du pattern
-config1 = ConfigSingleton.getConfig()
+# config1 = ConfigSingleton.getConfig()
 # print("instance 1 : " + str(config1))
 
 # config2 = ConfigSingleton.getConfig()
@@ -41,4 +41,4 @@ config1 = ConfigSingleton.getConfig()
 #     print("Tout est ok, la config 3 est null")
 
 # # Test avec YAML 
-print(yaml.dump(config1["piranha"]["affichage"]))
+# print(yaml.dump(config1["piranha"]["affichage"]))

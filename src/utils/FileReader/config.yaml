@@ -29,7 +29,8 @@ gupy : &poisson_template
   predation:
     est_proie : true
     est_predateur : false
-    proies : ""
+    proies : 
+    - ""
   affichage : &affichage_simple
     x : 300
     y : 300
@@ -44,7 +45,7 @@ piranha :
     est_proie : false 
     est_predateur : true
     proies : 
-    -"gupy"
+      - "gupy"
   affichage : 
     x : 100
     y : 100
