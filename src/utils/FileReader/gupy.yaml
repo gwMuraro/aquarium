@@ -1,9 +1,7 @@
 argent:
-- argentGenere
-- - 10
+- argentGenere : 10
 - periodeGeneration
-- curseurGeneration
-- - 0
+- curseurGeneration : 0
 deplacement:
 - inertie
 - - 0
