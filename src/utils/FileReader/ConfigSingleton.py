@@ -4,7 +4,7 @@ class ConfigSingleton :
     __NB_INSTANCES = 0 
     __INSTANCE_CONFIG_SINGLETON = None
 
-    def __init__(self, chemin_config="src/utils/FileReader/gupy.yaml"): 
+    def __init__(self, chemin_config="src/utils/FileReader/config.yaml"): 
         
         if ConfigSingleton.__NB_INSTANCES > 0 : 
             print("Erreur faible : le singleton est déjà créé")
@@ -26,7 +26,7 @@ class ConfigSingleton :
             
 
 # # Test du pattern
-# config1 = ConfigSingleton.getConfig()
+config1 = ConfigSingleton.getConfig()
 # print("instance 1 : " + str(config1))
 
 # config2 = ConfigSingleton.getConfig()
@@ -40,4 +40,4 @@ class ConfigSingleton :
 #     print("Tout est ok, la config 3 est null")
 
 # # Test avec YAML 
-# print(config1["argent"])
+print(yaml.dump(config1["piranha"]))

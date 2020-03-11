@@ -6,10 +6,10 @@ class SpriteVivant(SpriteBase) :
     
     DIRECTIONS_DROITE = [1, 2, 3]
     DIRECTIONS_GAUCHE = [5, 6, 7]
-    CHEMIN_PIRANHA_VERS_GAUCHE = "src/images/piranha_vers_la_gauche.png"
-    CHEMIN_PIRANHA_VERS_DROITE = "src/images/piranha_vers_la_droite.png"
-    CHEMIN_POISSON_VERS_GAUCHE = "src/images/poisson_vers_la_gauche.png"
-    CHEMIN_POISSON_VERS_DROITE = "src/images/poisson_vers_la_droite.png"
+    CHEMIN_PIRANHA_VERS_GAUCHE = "images/piranha_vers_la_gauche.png"
+    CHEMIN_PIRANHA_VERS_DROITE = "images/piranha_vers_la_droite.png"
+    CHEMIN_POISSON_VERS_GAUCHE = "images/poisson_vers_la_gauche.png"
+    CHEMIN_POISSON_VERS_DROITE = "images/poisson_vers_la_droite.png"
 
     def __init__(self, x, y, largeur, hauteur, type="gupy") :
         self.type = type

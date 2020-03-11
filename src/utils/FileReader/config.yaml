@@ -1,0 +1,49 @@
+liste_sprite : &sprite_template
+  vers_la_gauche : "images/poisson_vers_la_gauche.png"
+  vers_la_droite : "images/poisson_vers_la_droite.png"
+
+
+poisson : &poisson_template
+  argent:
+    argentGenere : 10
+    periodeGeneration : 10
+    curseurGeneration : 0
+  deplacement:
+    inertie : 0
+    inertieMax : 50
+    velocite : 3
+    direction : 
+    - 1
+    - 2
+    - 3
+    - 5
+    - 6
+    - 7
+  gestionFaim:
+    faimMax : 30
+    faim : 30
+    seuilAppetance : 10.0
+    valeurNutritive : 60
+  predation:
+    estProie : true
+    estPredateur : false
+  affichage : 
+    longueur : 60
+    hauteur : 40
+    liste_sprite_poisson : *sprite_template
+
+    
+gupy : 
+  << : *poisson_template
+
+
+piranha :
+  << : *poisson_template
+  predation : 
+    estProie : false 
+    estPredateur : true
+  affichage : 
+    liste_sprite_piranha : 
+      << : *sprite_template
+      vers_la_gauche : "images/piranha_vers_la_gauche.png"
+      vers_la_droite : "images/piranha_vers_la_droite.png"

@@ -16,7 +16,7 @@ controlleur = ControlleurJeu.ControlleurJeu()
 fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre))
 pygame.display.set_caption("Aquarium")
 # Ajout d'un fond d'écran 
-fond = pygame.image.load("src/images/fond.jpg") # 1200 x 800
+fond = pygame.image.load("images/fond.jpg") # 1200 x 800
 # Fenêtre ---
 
 # --- Horloge
@@ -25,8 +25,8 @@ horloge = pygame.time.Clock()
 # Horloge ---
 
 # --- Création de l'IHM
-bouton_plus = sb.SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
-bouton_plus_piranha = sb.SpriteBoutton(690, 430, 100, 48, "src/images/bouton_ajouter.png")
+bouton_plus = sb.SpriteBoutton(690, 542, 100, 48, "images/bouton_ajouter.png")
+bouton_plus_piranha = sb.SpriteBoutton(690, 430, 100, 48, "images/bouton_ajouter.png")
 # Création de l'IHM ---
 
 # --- Création des poissons

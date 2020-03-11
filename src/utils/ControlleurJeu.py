@@ -32,7 +32,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_piranhas) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, "piranha"))
+            self.vivants.append(SpriteVivant(x, y, 60, 40, type="piranha"))
 
     def tuerLePoisson(self, poisson): 
         SpriteBase.sTabTousLesSprites.remove(poisson)
