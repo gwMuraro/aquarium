@@ -10,4 +10,5 @@ class SpriteBoutton(SpriteBase) :
         if contexte.cagnotte >= 50 : 
             contexte.cagnotte -= 50
             contexte.ajouteVivant()
-        
+    
+    

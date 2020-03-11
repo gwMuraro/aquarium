@@ -15,7 +15,7 @@ class ControlleurJeu() :
 
         self.nombre_poissons = 10
         self.nombre_piranhas = 3 
-        self.cagnotte = 0
+        self.cagnotte = 100000
 
         self.vivants = list()
 
@@ -33,7 +33,6 @@ class ControlleurJeu() :
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
             self.vivants.append(SpriteVivant(x, y, 60, 40, "piranha"))
-            self.vivants[len(self.vivants) - 1].poisson.devientPredateur()
 
     def tuerLePoisson(self, poisson): 
         SpriteBase.sTabTousLesSprites.remove(poisson)
@@ -43,7 +42,7 @@ class ControlleurJeu() :
     def ajouteVivant(self) : 
         x = random.randint(0, self.largeur_fenetre - 60)
         y = random.randint(0, self.hauteur_fenetre - 40)
-        self.vivants.append(SpriteVivant(x, y, 60, 40))
+        self.vivants.append(SpriteVivant(x, y, 60, 40, type="gupy"))
 
     def actionsPeriodiques(self) : 
 
@@ -102,3 +101,5 @@ class ControlleurJeu() :
                     # TODO : Peut être un observer à mettre ici
                     # Action de la sprite cliquée
                     sprites_cliquees[0].clique(self)
+            
+            

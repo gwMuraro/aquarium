@@ -92,7 +92,7 @@ class ContenantVivant() :
     def devientProie(self) :
         import utils.ControlleurEntites.Decorateur as deco 
         if type(self).__name__ != deco.DecorationProie.__name__ :
-            self = deco.DecorationPredateur(self)
+            self = deco.DecorationProie(self)
 
     def devientPredateur(self) : 
         import utils.ControlleurEntites.Decorateur as deco

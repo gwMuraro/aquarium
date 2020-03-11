@@ -13,16 +13,20 @@ class SpriteVivant(SpriteBase) :
 
     def __init__(self, x, y, largeur, hauteur, type="gupy") :
         self.type = type
-        
+        self.poisson = Poisson()
+        self.velocite = 5
+
         if type == "gupy" : 
             SpriteBase.__init__(self, x, y, largeur, hauteur, SpriteVivant.CHEMIN_POISSON_VERS_DROITE)
+            self.poisson.devientProie()
+
         elif type == "piranha" : 
             SpriteBase.__init__(self, x, y, largeur, hauteur, SpriteVivant.CHEMIN_PIRANHA_VERS_DROITE)
+            self.poisson.devientPredateur()
         
-        self.velocite = 5
-        self.poisson = Poisson(50, self.velocite)
         self.redimensionner(largeur, hauteur)
         self.transposition()
+
 
     def deplacement(self) : 
         # Ancienne direction 

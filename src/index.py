@@ -26,6 +26,7 @@ horloge = pygame.time.Clock()
 
 # --- Création de l'IHM
 bouton_plus = sb.SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
+bouton_plus_piranha = sb.SpriteBoutton(690, 430, 100, 48, "src/images/bouton_ajouter.png")
 # Création de l'IHM ---
 
 # --- Création des poissons

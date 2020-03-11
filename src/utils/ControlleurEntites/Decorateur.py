@@ -19,6 +19,8 @@ class DecorationProie(Decorateur) :
 class DecorationPredateur(Decorateur) :
     def __init__ (self, contenant_vivant):
         Decorateur.__init__(self, contenant_vivant)
+        print("je suis un prédateur " + str(self.estProie()))
+
 
     def estPredateur (self) : 
         return True
