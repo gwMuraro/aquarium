@@ -1,13 +1,16 @@
 import pygame
 
-from utils import * 
+import utils.CoefDirection as cd
+import utils.ControlleurJeu as ControlleurJeu
+import utils.ObjetsSprite.SpriteBoutton as sb
+import utils.ObjetsSprite.SpriteBase as sbase
 
 # initialisation du framework
 pygame.init()
 police = pygame.font.SysFont("ubuntu", 15)
 
 # Création du controlleur 
-controlleur = ControlleurJeu()
+controlleur = ControlleurJeu.ControlleurJeu()
 
 # --- Fenêtre 
 fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre))
@@ -22,7 +25,7 @@ horloge = pygame.time.Clock()
 # Horloge ---
 
 # --- Création de l'IHM
-bouton_plus = SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
+bouton_plus = sb.SpriteBoutton(690, 542, 100, 48, "src/images/bouton_ajouter.png")
 # Création de l'IHM ---
 
 # --- Création des poissons
@@ -47,7 +50,7 @@ while bContinue :
     fenetre.blit(libelle, (10, 10))
     
     # affichage des sprites 
-    SpriteBase.sTabTousLesSprites.draw(fenetre) 
+    sbase.SpriteBase.sTabTousLesSprites.draw(fenetre) 
     
     pygame.display.flip()
     # DESSIN ---

@@ -1,8 +1,8 @@
 # Définition d'une classe "foncteur" avec fonction de call back
-class test : 
+class Foncteur : 
     def __init__(self, fonction, **kwargs) : 
         # attachement de la fonction de callback à notre instance. 
-        setattr(self, "fonction_callback", fonction(**kwargs))
+        setattr(self, "fonctionCallback", fonction(**kwargs))
 
 # définition d'une fonction qui prend une fonction et des parametres optionnels 
 def une_fonction_qui_prend_une_fonction_en_parametre (fonction, parametres=None):
@@ -46,6 +46,6 @@ if __name__ == "__main__":
     une_fonction_de_fonction_avec_kwargs(fonction_kwargs)
 
     # test de la fonction de callback dans une classe
-    cl = test(fonction_kwargs, un="1", deux="deux")
-    cl.fonction_callback
+    cl = Foncteur(fonction_kwargs, un="1", deux="deux")
+    cl.fonctionCallback
 

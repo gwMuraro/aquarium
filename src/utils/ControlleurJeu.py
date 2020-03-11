@@ -1,6 +1,6 @@
 import random
-from utils.ObjetsSprite.SpritePoisson import *
-from utils.ObjetsSprite.SpritePiranha import *
+import sys
+from utils.ObjetsSprite.SpriteVivant import *
 
 
 class ControlleurJeu() :
@@ -24,7 +24,7 @@ class ControlleurJeu() :
         for i in range(self.nombre_poissons) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpritePoisson(x, y, 60, 40))
+            self.vivants.append(SpriteVivant(x, y, 60, 40, "gupy"))
             self.vivants[i].poisson.inertie_max = 60
             self.vivants[i].poisson.velocite = random.randint(2, 4)
 
@@ -32,8 +32,8 @@ class ControlleurJeu() :
         for i in range(self.nombre_piranhas) : 
             x = random.randint(0, self.largeur_fenetre - 60)
             y = random.randint(0, self.hauteur_fenetre - 40)
-            self.vivants.append(SpritePiranha(x, y, 60, 40))
-            self.vivants[len(self.vivants) - 1].devientPredateur()
+            self.vivants.append(SpriteVivant(x, y, 60, 40, "piranha"))
+            self.vivants[len(self.vivants) - 1].poisson.devientPredateur()
 
     def tuerLePoisson(self, poisson): 
         SpriteBase.sTabTousLesSprites.remove(poisson)
@@ -43,7 +43,7 @@ class ControlleurJeu() :
     def ajouteVivant(self) : 
         x = random.randint(0, self.largeur_fenetre - 60)
         y = random.randint(0, self.hauteur_fenetre - 40)
-        self.vivants.append(SpritePoisson(x, y, 60, 40))
+        self.vivants.append(SpriteVivant(x, y, 60, 40))
 
     def actionsPeriodiques(self) : 
 

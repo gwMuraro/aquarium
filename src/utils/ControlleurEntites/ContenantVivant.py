@@ -1,9 +1,10 @@
 import random 
 import pygame
 import sys
-from utils.Direction import *
 
+import utils.CoefDirection as cd
 
+# ====== abs
 class ContenantVivant() : 
 
     def __init__ (self, inertie_max=50, velocite=3):
@@ -63,7 +64,7 @@ class ContenantVivant() :
     
     def changeDirection(self) :
         self.inertie = 0 
-        return CoefDirection.sTabDirections[random.randint(0,7)]
+        return cd.CoefDirection.sTabDirections[random.randint(0,7)]
     
     def estPredateur(self) : 
         return False
@@ -87,3 +88,13 @@ class ContenantVivant() :
         else :
             self.curseur_generation_argent += 1 
         return argent
+
+    def devientProie(self) :
+        import utils.ControlleurEntites.Decorateur as deco 
+        if type(self).__name__ != deco.DecorationProie.__name__ :
+            self = deco.DecorationPredateur(self)
+
+    def devientPredateur(self) : 
+        import utils.ControlleurEntites.Decorateur as deco
+        if type(self).__name__ != deco.DecorationPredateur.__name__ :
+            self = deco.DecorationPredateur(self)
