@@ -28,5 +28,13 @@ class Poisson(ContenantVivant) :
         self.periode_generation = config["argent"]["periode_generation"]
         self.curseur_generation_argent = config["argent"]["curseur_generation"]
 
+        # Gestion de la direction 
+        self.directions_gauche = config["deplacement"]["direction"]["gauche"]
+        self.directions_droite = config["deplacement"]["direction"]["droite"]
         
-        
+        # self.changeDirection()
+
+    # def changeDirection(self) :
+    #     self.inertie = 0 
+    #     l = self.directions_droite + self.directions_gauche
+    #     return cd.CoefDirection.sTabDirections[l[random.randint(0,7)]]

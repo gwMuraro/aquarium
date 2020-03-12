@@ -29,6 +29,8 @@ class ContenantVivant() :
         self.periode_generation = 2 + random.randint(1, 10)
         self.curseur_generation_argent = 0
 
+        
+
     def calculDeplacement(self, x_actuel, y_actuel, largeur, hauteur) : 
         # update de l'inertie 
         self.inertie += 1        
@@ -101,7 +103,21 @@ class ContenantVivant() :
             new = DecorationPredateur(self, liste_proies)
             return new
             
-            
+    def getInformations(self) : 
+        chaine = "Poisson de type : " + str(self.type_poisson) + "\n"
+        chaine += "\t- Faim = " + str(self.faim) + "\n"
+        chaine += "\t- Argent = " + str(self.argent_genere) + "\n"
+        chaine += "\t- Période = " + str(self.periode_generation) + "\n"
+        chaine += "\t- Est Proie = " + str(self.estProie()) + "\n"
+        chaine += "\t- Est Proie = " + str(self.estPredateur()) + "\n"
+
+        if self.estPredateur() : 
+            chaine += "\t- Proies : \n"
+            for proie in self.liste_proies : 
+                chaine += "\t\t"+ proie +"\n"
+
+        return chaine
+
 
 # ============================== ABS ==============================
 class Decorateur(ContenantVivant) : 

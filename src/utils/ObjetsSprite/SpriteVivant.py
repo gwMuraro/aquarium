@@ -5,17 +5,16 @@ from utils.FileReader.ConfigSingleton import ConfigSingleton
 
 class SpriteVivant(SpriteBase) :
     
-
     def __init__(self, x, y, largeur, hauteur, type_poisson="gupy") :
 
-        # récupération de l'instance de configuration 
         config = ConfigSingleton.getConfig()[type_poisson]
 
-        SpriteBase.__init__(self, x, y, config["affichage"]["largeur"], config["affichage"]["hauteur"], config["affichage"]["liste_sprite_poisson"]["vers_la_gauche"])
+        SpriteBase.__init__(self, x, y, config["affichage"]["largeur"], \
+            config["affichage"]["hauteur"], \
+            config["affichage"]["liste_sprite_poisson"]["vers_la_gauche"])
+        
         self.type_poisson = type_poisson 
-
         self.poisson = Poisson(type_poisson)
-        self.velocite = config["deplacement"]["velocite"]
         self.directions_gauche = config["deplacement"]["direction"]["gauche"]
         self.directions_droite = config["deplacement"]["direction"]["droite"]
         self.chemin_images = config["affichage"]["liste_sprite_poisson"]
@@ -53,7 +52,6 @@ class SpriteVivant(SpriteBase) :
         # ----
     
     def setVelocite(self, velocite) : 
-        
         self.velocite = velocite
         self.poisson.velocite = velocite
     
@@ -66,4 +64,10 @@ class SpriteVivant(SpriteBase) :
 
         # redimensionnement de la nouvelle image 
         self.redimensionner(self.rect.width, self.rect.height)
+
+    def clique(self, contexte) : 
+        
+        contexte.indice_poisson_actuel = contexte.vivants.index(self)
+        print("indice = "+ str(contexte.indice_poisson_actuel))
+        contexte.informations_poisson = self.poisson.getInformations()
 

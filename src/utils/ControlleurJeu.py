@@ -14,10 +14,19 @@ class ControlleurJeu() :
 
     def __init__(self) : 
 
-        self.largeur_fenetre = ControlleurJeu.largeur_fenetre
-        self.hauteur_fenetre = ControlleurJeu.hauteur_fenetre
-        self.largeur_aquarium = ControlleurJeu.largeur_aquarium
-        self.hauteur_aquarium = ControlleurJeu.hauteur_aquarium
+        config = cs.ConfigSingleton.getConfig()
+
+        ControlleurJeu.largeur_fenetre = config["aquarium"]["affichage"]["largeur_fenetre"]
+        self.largeur_fenetre = config["aquarium"]["affichage"]["largeur_fenetre"]
+        
+        ControlleurJeu.hauteur_fenetre = config["aquarium"]["affichage"]["hauteur_fenetre"]
+        self.hauteur_fenetre = config["aquarium"]["affichage"]["hauteur_fenetre"]
+        
+        ControlleurJeu.largeur_aquarium = config["aquarium"]["affichage"]["largeur_aquarium"]
+        self.largeur_aquarium = config["aquarium"]["affichage"]["largeur_aquarium"]
+        
+        ControlleurJeu.hauteur_aquarium = config["aquarium"]["affichage"]["hauteur_aquarium"]
+        self.hauteur_aquarium = config["aquarium"]["affichage"]["hauteur_aquarium"]
         
         self.FPS = 30
         self.une_seconde = self.FPS * 1
@@ -30,33 +39,40 @@ class ControlleurJeu() :
 
         self.vivants = list()
 
-    def creationVivants(self) : 
-        # création des poissons type gupys
-        for i in range(self.nombre_poissons) : 
-            x = random.randint(0, self.largeur_aquarium - 60)
-            y = random.randint(0, self.hauteur_aquarium - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="gupy"))
+        self.indice_poisson_actuel = None
+        self.informations_poisson = " "
 
-        # creation des poissons type piranhas
-        for i in range(self.nombre_piranhas) : 
-            x = random.randint(0, self.largeur_aquarium - 60)
-            y = random.randint(0, self.hauteur_aquarium - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="piranha"))
-        
-        for i in range(self.nombre_crevettes) : 
-            x = random.randint(0, self.largeur_aquarium - 60)
-            y = random.randint(0, self.hauteur_aquarium - 40)
-            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="crevette"))
+    def creationVivants(self) : 
+        config = cs.ConfigSingleton.getConfig()
+        for clef, valeur in config["aquarium"]["vivants"].items() : 
+            for i in range(valeur): 
+                x = random.randint(0, self.largeur_aquarium - 60)
+                y = random.randint(0, self.hauteur_aquarium - 40)
+                self.vivants.append(SpriteVivant(x, y, config[clef]["affichage"]["largeur"], config[clef]["affichage"]["hauteur"], type_poisson=clef))
 
     def tuerLePoisson(self, poisson): 
+        # mise à jour de l'affichage des informations du poisson 
+        if self.indice_poisson_actuel!= None and self.indice_poisson_actuel == self.vivants.index(poisson) : 
+            # si le poisson actuel meurt 
+            self.indice_poisson_actuel = None
+            self.informations_poisson = ""
+        elif self.indice_poisson_actuel!= None and self.indice_poisson_actuel > self.vivants.index(poisson) : 
+            # si c'est un poisson de rang inférieur qui meurt 
+            self.indice_poisson_actuel -= 1 
+        
         SpriteBase.sTabTousLesSprites.remove(poisson)
         self.vivants.remove(poisson)
+        
+        # si on a juste eu un décalage dans la liste des poissons 
+        if self.indice_poisson_actuel != None : 
+            self.informations_poisson = self.vivants[self.indice_poisson_actuel].poisson.getInformations()
 
     # TODO : Pattern factory peut être ici
     def ajouteVivant(self, type_poisson="gupy") : 
-        x = random.randint(0, self.largeur_aquarium - 60)
-        y = random.randint(0, self.hauteur_aquarium - 40)
-        self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson=type_poisson))
+        config = cs.ConfigSingleton.getConfig()
+        x = random.randint(0, self.largeur_aquarium - config[type_poisson]["affichage"]["largeur"])
+        y = random.randint(0, self.hauteur_aquarium - config[type_poisson]["affichage"]["hauteur"])
+        self.vivants.append(SpriteVivant(x, y, config[type_poisson]["affichage"]["largeur"], config[type_poisson]["affichage"]["hauteur"], type_poisson=type_poisson))
 
     def actionsPeriodiques(self) : 
 
@@ -65,6 +81,10 @@ class ControlleurJeu() :
             
             # GESTION DU DEPLACEMENT
             vivant.deplacement()
+
+            # GESTION DE LA VISUALISATION DU POISSON 
+            if self.indice_poisson_actuel != None : 
+                self.informations_poisson = self.vivants[self.indice_poisson_actuel].poisson.getInformations()
 
             # GESTION DE LA PREDATION
             # On ne traite le cas que des poissons prédateurs et s'il a faim
@@ -115,6 +135,5 @@ class ControlleurJeu() :
                 if len(sprites_cliquees) > 0 : 
                     # TODO : Peut être un observer à mettre ici
                     # Action de la sprite cliquée
-                    sprites_cliquees[0].clique()
-            
+                    sprites_cliquees[0].clique(self)
             

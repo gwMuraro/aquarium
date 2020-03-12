@@ -7,7 +7,7 @@ class SpriteBoutton(SpriteBase) :
         SpriteBase.__init__(self, x, y, largeur, hauteur, chemin_image)
         self.redimensionner(largeur, hauteur)
         
-    def clique(self) :
+    def clique(self, contexte) :
         pass
 
 class SpriteBouttonAjouter(SpriteBoutton) : 
@@ -17,9 +17,9 @@ class SpriteBouttonAjouter(SpriteBoutton) :
         self.type = type 
         self.contexte = contexte
         
-    def clique(self) : 
-        if self.contexte.cagnotte > 50 :
-            self.contexte.cagnotte -= 50 
-            self.contexte.ajouteVivant(type_poisson = self.type)
+    def clique(self, contexte) : 
+        if contexte.cagnotte > 50 :
+            contexte.cagnotte -= 50 
+            contexte.ajouteVivant(type_poisson = self.type)
         
 
