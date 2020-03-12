@@ -26,7 +26,8 @@ if __name__ == "__main__":
     # Horloge ---
 
     # --- Création de l'IHM
-    bouton_plus = sb.SpriteBoutton(x=690, y=542, largeur=100, hauteur=48, chemin_image="images/bouton_ajouter.png")
+    bouton_plus_gupy = sb.SpriteBouttonAjouter(x=690, y=542, largeur=100, hauteur=48, chemin_image="images/poisson_vers_la_gauche.png", contexte=controlleur, type="gupy")
+    bouton_plus_piranha = sb.SpriteBouttonAjouter(x=690, y=400, largeur=100, hauteur=48, chemin_image="images/piranha_vers_la_gauche.png", contexte=controlleur, type="piranha")
     # Création de l'IHM ---
 
     # --- Création des poissons

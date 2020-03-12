@@ -43,11 +43,12 @@ class ContenantVivant() :
             bChange_direction = True
 
         # Changement de direction par contact avec la bordure
-        if x_actuel + largeur + (self.velocite * self.coef_direction[0]) > 800 : 
+        import utils.ControlleurJeu as cj
+        if x_actuel + largeur + (self.velocite * self.coef_direction[0]) > cj.ControlleurJeu.largeur_aquarium : 
             bChange_direction = True
         if x_actuel + (self.velocite * self.coef_direction[0]) < 0 : 
             bChange_direction = True
-        if y_actuel + hauteur + (self.velocite * self.coef_direction[1]) > 600 : 
+        if y_actuel + hauteur + (self.velocite * self.coef_direction[1]) > cj.ControlleurJeu.hauteur_aquarium : 
             bChange_direction = True
         if y_actuel + (self.velocite * self.coef_direction[1]) < 0 : 
             bChange_direction = True
