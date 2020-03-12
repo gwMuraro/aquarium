@@ -1,9 +1,10 @@
 import pygame
-
 import utils.CoefDirection as cd
 import utils.ControlleurJeu as ControlleurJeu
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
+from utils.Foncteurs.Foncteur import *
+
 
 # initialisation du framework
 pygame.init()
@@ -25,8 +26,7 @@ horloge = pygame.time.Clock()
 # Horloge ---
 
 # --- Création de l'IHM
-bouton_plus = sb.SpriteBoutton(690, 542, 100, 48, "images/bouton_ajouter.png")
-bouton_plus_piranha = sb.SpriteBoutton(690, 430, 100, 48, "images/bouton_ajouter.png")
+bouton_plus = sb.SpriteBoutton(x=690, y=542, largeur=100, hauteur=48, chemin_image="images/bouton_ajouter.png")
 # Création de l'IHM ---
 
 # --- Création des poissons

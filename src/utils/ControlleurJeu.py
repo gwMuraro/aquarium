@@ -2,6 +2,7 @@ import random
 import sys
 from utils.ObjetsSprite.SpriteVivant import *
 import utils.FileReader.ConfigSingleton as cs
+from utils.Foncteurs.Foncteur import Foncteur
 
 
 class ControlleurJeu() :
