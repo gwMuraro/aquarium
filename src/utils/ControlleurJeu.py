@@ -6,10 +6,18 @@ import utils.FileReader.ConfigSingleton as cs
 
 
 class ControlleurJeu() :
-    
+        
+    largeur_fenetre = 1000
+    hauteur_fenetre = 600
+    largeur_aquarium = 800
+    hauteur_aquarium = 600
+
     def __init__(self) : 
-        self.largeur_fenetre = 800
-        self.hauteur_fenetre = 600
+
+        self.largeur_fenetre = ControlleurJeu.largeur_fenetre
+        self.hauteur_fenetre = ControlleurJeu.hauteur_fenetre
+        self.largeur_aquarium = ControlleurJeu.largeur_aquarium
+        self.hauteur_aquarium = ControlleurJeu.hauteur_aquarium
         
         self.FPS = 30
         self.une_seconde = self.FPS * 1
@@ -17,6 +25,7 @@ class ControlleurJeu() :
 
         self.nombre_poissons = 10
         self.nombre_piranhas = 3 
+        self.nombre_crevettes = 3
         self.cagnotte = 100000
 
         self.vivants = list()
@@ -24,15 +33,20 @@ class ControlleurJeu() :
     def creationVivants(self) : 
         # création des poissons type gupys
         for i in range(self.nombre_poissons) : 
-            x = random.randint(0, self.largeur_fenetre - 60)
-            y = random.randint(0, self.hauteur_fenetre - 40)
+            x = random.randint(0, self.largeur_aquarium - 60)
+            y = random.randint(0, self.hauteur_aquarium - 40)
             self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="gupy"))
 
         # creation des poissons type piranhas
         for i in range(self.nombre_piranhas) : 
-            x = random.randint(0, self.largeur_fenetre - 60)
-            y = random.randint(0, self.hauteur_fenetre - 40)
+            x = random.randint(0, self.largeur_aquarium - 60)
+            y = random.randint(0, self.hauteur_aquarium - 40)
             self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="piranha"))
+        
+        for i in range(self.nombre_crevettes) : 
+            x = random.randint(0, self.largeur_aquarium - 60)
+            y = random.randint(0, self.hauteur_aquarium - 40)
+            self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="crevette"))
 
     def tuerLePoisson(self, poisson): 
         SpriteBase.sTabTousLesSprites.remove(poisson)
@@ -40,8 +54,8 @@ class ControlleurJeu() :
 
     # TODO : Pattern factory peut être ici
     def ajouteVivant(self, type_poisson="gupy") : 
-        x = random.randint(0, self.largeur_fenetre - 60)
-        y = random.randint(0, self.hauteur_fenetre - 40)
+        x = random.randint(0, self.largeur_aquarium - 60)
+        y = random.randint(0, self.hauteur_aquarium - 40)
         self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson=type_poisson))
 
     def actionsPeriodiques(self) : 

@@ -55,4 +55,18 @@ piranha :
       << : *sprite_template
       vers_la_gauche : "images/piranha_vers_la_gauche.png"
       vers_la_droite : "images/piranha_vers_la_droite.png"
-  
+
+crevette : 
+  << : *poisson_template
+  predation :
+    est_proie : false 
+    est_predateur : false
+  affichage : 
+    x : 100
+    y : 100
+    largeur : 50
+    hauteur : 30 
+    liste_sprite_poisson : 
+      << : *sprite_template
+      vers_la_gauche : "images/crevette_vers_la_gauche.png"
+      vers_la_droite : "images/crevette_vers_la_droite.png"
