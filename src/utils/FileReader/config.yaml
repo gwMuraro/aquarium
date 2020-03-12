@@ -2,6 +2,28 @@ liste_sprite : &sprite_template
   vers_la_gauche : "images/poisson_vers_la_gauche.png"
   vers_la_droite : "images/poisson_vers_la_droite.png"
 
+bouton : &bouton_template
+  x : 0
+  y : 0
+  largeur : 100
+  hauteur : 48
+
+buton_ajout_gupy : 
+  << : *bouton_template
+  x : 690
+  y : 542
+  path : "images/poisson_vers_la_droite.png"
+  type_poisson : "gupy"
+  type_bouton : "SpriteBouttonAjouter"
+
+
+buton_ajout_piranha : 
+  << : *bouton_template
+  x : 690
+  y : 400
+  path : "images/piranha_vers_la_droite.png"
+  type_poisson : "piranha"
+  type_bouton : "SpriteBouttonAjouter"
 
 gupy : &poisson_template
   argent:
