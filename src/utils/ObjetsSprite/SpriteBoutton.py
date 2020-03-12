@@ -1,5 +1,5 @@
 from utils.ObjetsSprite.SpriteBase import *
-from utils.Foncteurs.Foncteur import Foncteur
+
 
 class SpriteBoutton(SpriteBase) : 
     def __init__(self, x=0, y=0, largeur=0, hauteur=0, chemin_image="") : 

@@ -2,7 +2,7 @@ import random
 import sys
 from utils.ObjetsSprite.SpriteVivant import *
 import utils.FileReader.ConfigSingleton as cs
-from utils.Foncteurs.Foncteur import Foncteur
+
 
 
 class ControlleurJeu() :
@@ -60,10 +60,9 @@ class ControlleurJeu() :
                 for i in range(len(self.vivants)-1, -1, -1) :  # TODO : utiliser un foreach plutot qu'un iterateur
                     # Si le prédateur est en contact avec un Sprite 
                     if vivant.rect.colliderect(self.vivants[i].rect) and vivant.poisson.aFaim(): 
-
+                        
                         # si le poisson en collision est une proie, on la mange 
                         if self.vivants[i].poisson.type_poisson in vivant.poisson.liste_proies : 
-                            
                             vivant.poisson.mange(self.vivants[i].poisson.valeur_nutritive)
                             self.tuerLePoisson(self.vivants[i])
 
