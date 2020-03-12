@@ -39,10 +39,10 @@ class ControlleurJeu() :
         self.vivants.remove(poisson)
 
     # TODO : Pattern factory peut être ici
-    def ajouteVivant(self) : 
+    def ajouteVivant(self, type_poisson="gupy") : 
         x = random.randint(0, self.largeur_fenetre - 60)
         y = random.randint(0, self.hauteur_fenetre - 40)
-        self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson="gupy"))
+        self.vivants.append(SpriteVivant(x, y, 60, 40, type_poisson=type_poisson))
 
     def actionsPeriodiques(self) : 
 
@@ -101,6 +101,6 @@ class ControlleurJeu() :
                 if len(sprites_cliquees) > 0 : 
                     # TODO : Peut être un observer à mettre ici
                     # Action de la sprite cliquée
-                    sprites_cliquees[0].clique(self)
+                    sprites_cliquees[0].clique()
             
             
