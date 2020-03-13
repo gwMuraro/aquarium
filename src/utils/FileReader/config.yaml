@@ -25,7 +25,7 @@ bouton : &bouton_template
 
 buton_ajout_gupy : 
   << : *bouton_template
-  x : 690
+  x : 710
   y : 542
   chemin_image : "images/poisson_vers_la_gauche.png"
   type_poisson : "gupy"
@@ -34,7 +34,7 @@ buton_ajout_gupy :
 
 buton_ajout_piranha : 
   << : *bouton_template
-  x : 690
+  x : 710
   y : 470
   chemin_image : "images/piranha_vers_la_gauche.png"
   type_poisson : "piranha"
@@ -42,10 +42,10 @@ buton_ajout_piranha :
 
 bouton_ajout_crevette : 
   << : *bouton_template
-  x : 690
+  x : 710
   y : 420
   chemin_image : "images/crevette_vers_la_gauche.png"
-  type_crevette : "crevette"
+  type_poisson : "crevette"
   type_bouton : "SpriteBouttonAjouter"
 
 gupy : &poisson_template

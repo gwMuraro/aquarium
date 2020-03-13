@@ -28,12 +28,12 @@ class SpriteBouttonAjouter(SpriteBoutton) :
         SpriteBoutton.__init__(self, x, y, largeur, hauteur, chemin_image)
         
         # element de cet objet hérité
-        self.type = data[tabDonnee]["type_bouton"]
+        self.type_poisson = data[tabDonnee]["type_poisson"]
         self.contexte = contexte
         
     def clique(self, contexte) : 
         if contexte.cagnotte > 50 :
             contexte.cagnotte -= 50 
-            contexte.ajouteVivant(type_poisson = self.type)
+            contexte.ajouteVivant(type_poisson = self.type_poisson)
         
 
