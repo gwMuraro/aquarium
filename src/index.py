@@ -3,6 +3,12 @@ import utils.CoefDirection as cd
 import utils.ControlleurJeu as ControlleurJeu
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
+import utils.FileReader.ConfigSingleton as cs
+
+
+data = cs.ConfigSingleton.getConfig()
+#print({SpriteBouttonAjouter()})
+
 
 if __name__ == "__main__":
         
@@ -41,10 +47,14 @@ if __name__ == "__main__":
         controlleur.hauteur_fenetre / 2))
 
     # Ajout des boutons d'ajout de vivants
-    bouton_plus_gupy = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=540, largeur=100, hauteur=50, chemin_image="images/poisson_vers_la_gauche.png", contexte=controlleur, type="gupy")
-    bouton_plus_piranha = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=470, largeur=100, hauteur=50, chemin_image="images/piranha_vers_la_gauche.png", contexte=controlleur, type="piranha")
-    bouton_plus_crevette = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=420, largeur=100, hauteur=50, chemin_image="images/crevette_vers_la_gauche.png", contexte=controlleur, type="crevette")
-    # Création de l'IHM ---
+    #bouton_plus_gupy = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=540, largeur=100, hauteur=50, chemin_image="images/poisson_vers_la_gauche.png", contexte=controlleur, type="gupy")
+    #bouton_plus_piranha = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=470, largeur=100, hauteur=50, chemin_image="images/piranha_vers_la_gauche.png", contexte=controlleur, type="piranha")
+    #bouton_plus_crevette = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=420, largeur=100, hauteur=50, chemin_image="images/crevette_vers_la_gauche.png", contexte=controlleur, type="crevette")
+    bouton_plus_gupy = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_gupy")
+    bouton_plus_piranha = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_piranha")
+    bouton_plus_crevette  = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="bouton_ajout_crevette")
+
+    #  Création de l'IHM ---
 
     # --- Horloge
     # L'utilisation des images par secondes nous permettent de déterminer les secondes dans la mainloop

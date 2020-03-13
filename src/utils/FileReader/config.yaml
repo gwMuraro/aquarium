@@ -13,6 +13,7 @@ aquarium :
     largeur_aquarium : 700
     hauteur_aquarium : 600
   boutons : 
+    bouton_ajout_crevette : 1
     bouton_ajout_piranha : 1
     bouton_ajout_gupy : 1
     
@@ -26,7 +27,7 @@ buton_ajout_gupy :
   << : *bouton_template
   x : 690
   y : 542
-  path : "images/poisson_vers_la_droite.png"
+  chemin_image : "images/poisson_vers_la_gauche.png"
   type_poisson : "gupy"
   type_bouton : "SpriteBouttonAjouter"
 
@@ -34,9 +35,17 @@ buton_ajout_gupy :
 buton_ajout_piranha : 
   << : *bouton_template
   x : 690
-  y : 400
-  path : "images/piranha_vers_la_droite.png"
+  y : 470
+  chemin_image : "images/piranha_vers_la_gauche.png"
   type_poisson : "piranha"
+  type_bouton : "SpriteBouttonAjouter"
+
+bouton_ajout_crevette : 
+  << : *bouton_template
+  x : 690
+  y : 420
+  chemin_image : "images/crevette_vers_la_gauche.png"
+  type_crevette : "crevette"
   type_bouton : "SpriteBouttonAjouter"
 
 gupy : &poisson_template
