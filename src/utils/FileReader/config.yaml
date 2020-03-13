@@ -7,6 +7,7 @@ aquarium :
     gupy : 10 
     piranha : 3
     crevette : 3
+    meduse : 1
   affichage: 
     largeur_fenetre : 1000
     hauteur_fenetre : 600
@@ -46,6 +47,14 @@ bouton_ajout_crevette :
   y : 420
   chemin_image : "images/crevette_vers_la_gauche.png"
   type_poisson : "crevette"
+  type_bouton : "SpriteBouttonAjouter"
+
+bouton_ajout_meduse : 
+  << : *bouton_template
+  x : 710
+  y : 360
+  chemin_image : "images/meduse_vers_la_gauche.png"
+  type_poisson : "meduse"
   type_bouton : "SpriteBouttonAjouter"
 
 gupy : &poisson_template
@@ -115,3 +124,18 @@ crevette :
       << : *sprite_template
       vers_la_gauche : "images/crevette_vers_la_gauche.png"
       vers_la_droite : "images/crevette_vers_la_droite.png"
+
+meduse : 
+  << : *poisson_template
+  predation :
+    est_proie : false 
+    est_predateur : false
+  affichage : 
+    x : 100
+    y : 100
+    largeur : 50
+    hauteur : 97 
+    liste_sprite_poisson : 
+      << : *sprite_template
+      vers_la_gauche : "images/meduse_vers_la_gauche.png"
+      vers_la_droite : "images/meduse_vers_la_droite.png"

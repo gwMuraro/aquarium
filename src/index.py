@@ -53,6 +53,7 @@ if __name__ == "__main__":
     bouton_plus_gupy = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_gupy")
     bouton_plus_piranha = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_piranha")
     bouton_plus_crevette  = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="bouton_ajout_crevette")
+    bouton_plus_meduse  = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="bouton_ajout_meduse")
 
     #  Création de l'IHM ---
 
