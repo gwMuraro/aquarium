@@ -19,8 +19,8 @@ class ContenantVivant() :
         self.coef_direction = self.changeDirection()
         
         # Gestion de la faim
-        self.max_faim = 30 
-        self.faim = 30
+        self.max_faim = 100000000 
+        self.faim = 100000000
         self.seuil_appetance = int(self.max_faim / 3)
         self.valeur_nutritive = 60
 

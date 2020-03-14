@@ -47,13 +47,10 @@ if __name__ == "__main__":
         controlleur.hauteur_fenetre / 2))
 
     # Ajout des boutons d'ajout de vivants
-    #bouton_plus_gupy = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=540, largeur=100, hauteur=50, chemin_image="images/poisson_vers_la_gauche.png", contexte=controlleur, type="gupy")
-    #bouton_plus_piranha = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=470, largeur=100, hauteur=50, chemin_image="images/piranha_vers_la_gauche.png", contexte=controlleur, type="piranha")
-    #bouton_plus_crevette = sb.SpriteBouttonAjouter(x=controlleur.largeur_aquarium + 10, y=420, largeur=100, hauteur=50, chemin_image="images/crevette_vers_la_gauche.png", contexte=controlleur, type="crevette")
-    bouton_plus_gupy = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_gupy")
-    bouton_plus_piranha = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="buton_ajout_piranha")
-    bouton_plus_crevette  = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="bouton_ajout_crevette")
-    bouton_plus_meduse  = sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee="bouton_ajout_meduse")
+    config = cs.ConfigSingleton.getConfig()
+    liste_boutons = list()
+    for bouton in config["boutons_ajout"].keys() :
+        liste_boutons.append(sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee=bouton))
 
     #  Création de l'IHM ---
 

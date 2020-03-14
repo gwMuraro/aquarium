@@ -16,7 +16,7 @@ class SpriteBouttonAjouter(SpriteBoutton) :
     #def __init__(self, **kwargs) : 
     def __init__(self, contexte, tabDonnee) :
         # TODO : remove et utiliser les kwargs
-        data = cs.ConfigSingleton.getConfig()
+        data = cs.ConfigSingleton.getConfig()["boutons_ajout"]
         #print({key:value for (key, value) in data["buton_ajout_gupy"].items()})
         # exec(type_bouton + '(' + self + ', x=' data["x"]...  ')')
         x = data[tabDonnee]["x"]

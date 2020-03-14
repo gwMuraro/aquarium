@@ -8,6 +8,8 @@ aquarium :
     piranha : 3
     crevette : 3
     meduse : 1
+    tortue : 2
+    sushi : 1
   affichage: 
     largeur_fenetre : 1000
     hauteur_fenetre : 600
@@ -24,38 +26,56 @@ bouton : &bouton_template
   largeur : 100
   hauteur : 48
 
-buton_ajout_gupy : 
-  << : *bouton_template
-  x : 710
-  y : 542
-  chemin_image : "images/poisson_vers_la_gauche.png"
-  type_poisson : "gupy"
-  type_bouton : "SpriteBouttonAjouter"
+boutons_ajout : 
+  buton_ajout_gupy : 
+    << : *bouton_template
+    x : 710
+    y : 542
+    chemin_image : "images/poisson_vers_la_gauche.png"
+    type_poisson : "gupy"
+    type_bouton : "SpriteBouttonAjouter"
 
 
-buton_ajout_piranha : 
-  << : *bouton_template
-  x : 710
-  y : 470
-  chemin_image : "images/piranha_vers_la_gauche.png"
-  type_poisson : "piranha"
-  type_bouton : "SpriteBouttonAjouter"
+  buton_ajout_piranha : 
+    << : *bouton_template
+    x : 710
+    y : 470
+    chemin_image : "images/piranha_vers_la_gauche.png"
+    type_poisson : "piranha"
+    type_bouton : "SpriteBouttonAjouter"
 
-bouton_ajout_crevette : 
-  << : *bouton_template
-  x : 710
-  y : 420
-  chemin_image : "images/crevette_vers_la_gauche.png"
-  type_poisson : "crevette"
-  type_bouton : "SpriteBouttonAjouter"
+  bouton_ajout_crevette : 
+    << : *bouton_template
+    x : 710
+    y : 420
+    chemin_image : "images/crevette_vers_la_gauche.png"
+    type_poisson : "crevette"
+    type_bouton : "SpriteBouttonAjouter"
 
-bouton_ajout_meduse : 
-  << : *bouton_template
-  x : 710
-  y : 360
-  chemin_image : "images/meduse_vers_la_gauche.png"
-  type_poisson : "meduse"
-  type_bouton : "SpriteBouttonAjouter"
+  bouton_ajout_meduse : 
+    << : *bouton_template
+    x : 710
+    y : 360
+    chemin_image : "images/meduse_vers_la_gauche.png"
+    type_poisson : "meduse"
+    type_bouton : "SpriteBouttonAjouter"
+
+
+  bouton_ajout_tortue : 
+    << : *bouton_template
+    x : 810
+    y : 542
+    chemin_image : "images/tortue_vers_la_gauche.png"
+    type_poisson : "tortue"
+    type_bouton : "SpriteBouttonAjouter"
+
+  bouton_ajout_sushi : 
+    << : *bouton_template
+    x : 810
+    y : 480
+    chemin_image : "images/sushi.png"
+    type_poisson : "sushi"
+    type_bouton : "SpriteBouttonAjouter"
 
 gupy : &poisson_template
   argent:
@@ -124,6 +144,43 @@ crevette :
       << : *sprite_template
       vers_la_gauche : "images/crevette_vers_la_gauche.png"
       vers_la_droite : "images/crevette_vers_la_droite.png"
+
+tortue : 
+  << : *poisson_template
+  predation :
+    est_proie : false 
+    est_predateur : false
+  affichage : 
+    x : 100
+    y : 100
+    largeur : 70
+    hauteur : 50 
+    liste_sprite_poisson : 
+      << : *sprite_template
+      vers_la_gauche : "images/tortue_vers_la_droite.png"
+      vers_la_droite : "images/tortue_vers_la_gauche.png"
+
+
+sushi : 
+  << : *poisson_template
+  predation :
+    est_proie : false 
+    est_predateur : false
+  gestion_faim:
+    faim_max : 100000
+    faim : 100000
+    seuil_appetance : 30.0
+    valeur_nutritive : 30
+
+  affichage : 
+    x : 100
+    y : 100
+    largeur : 70
+    hauteur : 50 
+    liste_sprite_poisson : 
+      << : *sprite_template
+      vers_la_gauche : "images/sushi.png"
+      vers_la_droite : "images/sushi.png"
 
 meduse : 
   << : *poisson_template
