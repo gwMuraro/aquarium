@@ -120,6 +120,11 @@ piranha :
     est_predateur : true
     proies : 
       - "gupy"
+  gestion_faim: 
+    faim_max : 100
+    faim : 69
+    seuil_appetance : 30.0
+    valeur_nutritive : 30
   affichage : 
     x : 100
     y : 100
@@ -149,7 +154,9 @@ tortue :
   << : *poisson_template
   predation :
     est_proie : false 
-    est_predateur : false
+    est_predateur : true 
+    proies :
+      - meduses
   affichage : 
     x : 100
     y : 100
@@ -167,10 +174,10 @@ sushi :
     est_proie : false 
     est_predateur : false
   gestion_faim:
-    faim_max : 100000
-    faim : 100000
-    seuil_appetance : 30.0
-    valeur_nutritive : 30
+    faim_max : 10
+    faim : 10
+    seuil_appetance : 0
+    valeur_nutritive : 0
 
   affichage : 
     x : 100

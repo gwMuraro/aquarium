@@ -4,8 +4,6 @@ from utils.FileReader.ConfigSingleton import ConfigSingleton
 class Poisson(ContenantVivant) : 
     def __init__(self, type_poisson) :
 
-        ContenantVivant.__init__(self, inertie_max=50, velocite=3)
-
         config = ConfigSingleton.getConfig()[type_poisson]
 
         # TODO : n'y a t il pas moyen de décharger tout directement dans un objet avec yaml ? 
@@ -31,6 +29,9 @@ class Poisson(ContenantVivant) :
         # Gestion de la direction 
         self.directions_gauche = config["deplacement"]["direction"]["gauche"]
         self.directions_droite = config["deplacement"]["direction"]["droite"]
+        
+        ContenantVivant.__init__(self, self)
+
         
         # self.changeDirection()
 

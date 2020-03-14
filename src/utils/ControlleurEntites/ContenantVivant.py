@@ -7,29 +7,29 @@ import utils.CoefDirection as cd
 # ====== abs
 class ContenantVivant() : 
 
-    def __init__ (self, inertie_max=50, velocite=3):
+    def __init__ (self, contenant_vivant):
+
         self.tabDecorations = list()
         
-        self.type_poisson = "abstract"
+        self.type_poisson = contenant_vivant.type_poisson
 
         # Gestion du déplacement
-        self.inertie = 0 
-        self.inertie_max = inertie_max
-        self.velocite = velocite
-        self.coef_direction = self.changeDirection()
+        self.inertie = contenant_vivant.inertie
+        self.inertie_max = contenant_vivant.inertie_max
+        self.velocite = contenant_vivant.velocite
+        self.coef_direction = contenant_vivant.changeDirection()
         
         # Gestion de la faim
-        self.max_faim = 100000000 
-        self.faim = 100000000
-        self.seuil_appetance = int(self.max_faim / 3)
-        self.valeur_nutritive = 60
+        self.max_faim = contenant_vivant.max_faim 
+        self.faim = contenant_vivant.faim
+        self.seuil_appetance = contenant_vivant.seuil_appetance
+        self.valeur_nutritive = contenant_vivant.valeur_nutritive
 
         # Gestion de l'argent
-        self.argent_genere = 10
-        self.periode_generation = 2 + random.randint(1, 10)
-        self.curseur_generation_argent = 0
+        self.argent_genere = contenant_vivant.argent_genere
+        self.periode_generation = contenant_vivant.periode_generation
+        self.curseur_generation_argent = contenant_vivant.curseur_generation_argent
 
-        
 
     def calculDeplacement(self, x_actuel, y_actuel, largeur, hauteur) : 
         # update de l'inertie 
@@ -109,7 +109,7 @@ class ContenantVivant() :
         chaine += "\t- Argent = " + str(self.argent_genere) + "\n"
         chaine += "\t- Période = " + str(self.periode_generation) + "\n"
         chaine += "\t- Est Proie = " + str(self.estProie()) + "\n"
-        chaine += "\t- Est Proie = " + str(self.estPredateur()) + "\n"
+        chaine += "\t- Est Prédateur = " + str(self.estPredateur()) + "\n"
 
         if self.estPredateur() : 
             chaine += "\t- Proies : \n"
@@ -122,15 +122,14 @@ class ContenantVivant() :
 # ============================== ABS ==============================
 class Decorateur(ContenantVivant) : 
     def __init__ (self, contenant_vivant):
-        ContenantVivant.__init__(self)
+        ContenantVivant.__init__(self, contenant_vivant)
         #self.contenant_vivant = contenant_vivant
 
 # ============================== Decoration ==============================
 
 class DecorationProie(Decorateur) : 
     def __init__(self, contenant_vivant) :
-        Decorateur.__init__(self, contenant_vivant)
-        self.type_poisson = contenant_vivant.type_poisson
+        Decorateur.__init__(self,contenant_vivant)
     
     def estProie(self) : 
         return True
@@ -140,7 +139,6 @@ class DecorationPredateur(Decorateur) :
     def __init__ (self, contenant_vivant, liste_proies):
         Decorateur.__init__(self, contenant_vivant)
         self.liste_proies = liste_proies
-        self.type_poisson = contenant_vivant.type_poisson
 
     def estPredateur (self) : 
         return True
