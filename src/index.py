@@ -7,8 +7,6 @@ import utils.FileReader.ConfigSingleton as cs
 
 
 data = cs.ConfigSingleton.getConfig()
-#print({SpriteBouttonAjouter()})
-
 
 if __name__ == "__main__":
         

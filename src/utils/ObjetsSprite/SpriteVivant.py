@@ -2,6 +2,7 @@ from utils.ObjetsSprite.SpriteBase import *
 from utils.ControlleurEntites.Poisson import *
 from utils.ControlleurEntites.ContenantVivant import *
 from utils.FileReader.ConfigSingleton import ConfigSingleton
+from utils.FileReader.ImageSingleton import ImageSingleton
 
 class SpriteVivant(SpriteBase) :
     
@@ -58,9 +59,9 @@ class SpriteVivant(SpriteBase) :
     def transposition(self) :
 
         if self.poisson.coef_direction[2] in self.directions_gauche : 
-            self.image = pygame.image.load(self.chemin_images["vers_la_gauche"])
+            self.image = ImageSingleton.getImage(self.chemin_images["vers_la_gauche"])
         if self.poisson.coef_direction[2] in self.directions_droite : 
-            self.image = pygame.image.load(self.chemin_images["vers_la_droite"])
+            self.image = ImageSingleton.getImage(self.chemin_images["vers_la_droite"])
 
         # redimensionnement de la nouvelle image 
         self.redimensionner(self.rect.width, self.rect.height)

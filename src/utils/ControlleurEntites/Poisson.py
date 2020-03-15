@@ -31,11 +31,3 @@ class Poisson(ContenantVivant) :
         self.directions_droite = config["deplacement"]["direction"]["droite"]
         
         ContenantVivant.__init__(self, self)
-
-        
-        # self.changeDirection()
-
-    # def changeDirection(self) :
-    #     self.inertie = 0 
-    #     l = self.directions_droite + self.directions_gauche
-    #     return cd.CoefDirection.sTabDirections[l[random.randint(0,7)]]

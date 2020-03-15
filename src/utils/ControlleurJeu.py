@@ -88,12 +88,13 @@ class ControlleurJeu() :
 
             # GESTION DE LA PREDATION
             # On ne traite le cas que des poissons prédateurs et s'il a faim
-            if vivant.poisson.estPredateur(): #and vivant.poisson.aFaim() : 
+            if vivant.poisson.estPredateur() and vivant.poisson.aFaim() : 
                 
                 # On vérifie une à une les interractions possible avec le poisson
                 for i in range(len(self.vivants)-1, -1, -1) :  # TODO : utiliser un foreach plutot qu'un iterateur
+                    
                     # Si le prédateur est en contact avec un Sprite 
-                    if vivant.rect.colliderect(self.vivants[i].rect) and vivant.poisson.aFaim(): 
+                    if vivant.rect.colliderect(self.vivants[i].rect) : 
                         
                         # si le poisson en collision est une proie, on la mange 
                         if self.vivants[i].poisson.type_poisson in vivant.poisson.liste_proies : 

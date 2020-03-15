@@ -6,10 +6,10 @@ aquarium :
   vivants : 
     gupy : 10 
     piranha : 3
-    crevette : 3
-    meduse : 1
-    tortue : 2
-    sushi : 1
+    # crevette : 3
+    # meduse : 1
+    # tortue : 2
+    # sushi : 1
   affichage: 
     largeur_fenetre : 1000
     hauteur_fenetre : 600

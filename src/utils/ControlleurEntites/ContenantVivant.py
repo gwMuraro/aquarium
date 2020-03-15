@@ -18,7 +18,9 @@ class ContenantVivant() :
         self.inertie_max = contenant_vivant.inertie_max
         self.velocite = contenant_vivant.velocite
         self.coef_direction = contenant_vivant.changeDirection()
-        
+        self.directions_gauche = contenant_vivant.directions_gauche
+        self.directions_droite = contenant_vivant.directions_droite
+
         # Gestion de la faim
         self.max_faim = contenant_vivant.max_faim 
         self.faim = contenant_vivant.faim
@@ -69,7 +71,8 @@ class ContenantVivant() :
     
     def changeDirection(self) :
         self.inertie = 0 
-        return cd.CoefDirection.sTabDirections[random.randint(0,7)]
+        dirs = self.directions_droite + self.directions_gauche
+        return cd.CoefDirection.sTabDirections[ dirs[random.randint(0, len(dirs) -1)]]
     
     def estPredateur(self) : 
         return False
