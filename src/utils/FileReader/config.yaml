@@ -1,3 +1,6 @@
+fond_fenetre : &image_template
+  chemin : "images/fond2.jpg"
+
 liste_sprite : &sprite_template
   vers_la_gauche : "images/poisson_vers_la_gauche.png"
   vers_la_droite : "images/poisson_vers_la_droite.png"
