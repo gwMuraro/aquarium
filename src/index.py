@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 import utils.CoefDirection as cd
 import utils.ControlleurJeu as ControlleurJeu
 import utils.ObjetsSprite.SpriteBoutton as sb
@@ -18,11 +19,14 @@ if __name__ == "__main__":
     controlleur = ControlleurJeu.ControlleurJeu()
 
     # --- Fenêtre 
-    fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre))
+    fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre), RESIZABLE)
     pygame.display.set_caption("Aquarium")
     
     # Ajout d'un fond d'écran 
-    fond = pygame.image.load("images/fond.jpg") # 1200 x 800
+    fond_Original = pygame.image.load("images/fond.jpg").convert() # 1200 x 800
+    fond =fond_Original  
+    position_fond = (0,0)
+    fenetre.blit(fond, position_fond)
     # Fenêtre ---
 
     # --- Création de l'IHM
@@ -66,13 +70,26 @@ if __name__ == "__main__":
     while bContinue : 
         pygame.time.delay(10)
 
+
         # GESTION EVENNEMENT + MOUVEMENT + PREDATION + ECONOMIE
         controlleur.gestionEvenements(pygame.event.get())
         controlleur.actionsPeriodiques()
 
         # --- DESSIN 
-        fenetre.fill((0,0,0))
-        fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                bContinue = False
+
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    bContinue = False
+
+            if event.type == VIDEORESIZE:
+                fond = fond_Original
+                fond = pygame.transform.scale(fond, (event.w, event.h))
+        fenetre.blit(fond, position_fond) # centrage par le calcul de la translation à faire
+        #pygame.display.flip()
+        #fenetre.fill((0,0,0))
         
         # affichage de la cagnotte 
         libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 

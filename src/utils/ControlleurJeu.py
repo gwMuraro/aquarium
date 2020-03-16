@@ -7,10 +7,10 @@ import utils.FileReader.ConfigSingleton as cs
 
 class ControlleurJeu() :
         
-    largeur_fenetre = 1000
-    hauteur_fenetre = 600
-    largeur_aquarium = 800
-    hauteur_aquarium = 600
+    #largeur_fenetre = 1000
+    #hauteur_fenetre = 600
+    #largeur_aquarium = 800
+    #hauteur_aquarium = 600
 
     def __init__(self) : 
 
