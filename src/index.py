@@ -1,6 +1,6 @@
 import pygame
 #from pygame.locals import *
-import utils.ControlleurJeu as ControlleurJeu
+import utils.ControlleurJeu as cj
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
 import utils.FileReader.ConfigSingleton as cs
@@ -16,14 +16,11 @@ if __name__ == "__main__":
     
 
     # Création du controlleur 
-    controlleur = ControlleurJeu.ControlleurJeu()
+    controlleur = cj.ControlleurJeu.getControlleurJeu()
 
     # --- Fenêtre 
-    #fenetre = pygame.display.set_mode((controlleur.largeur_fenetre, controlleur.hauteur_fenetre), RESIZABLE) 
-    #tailleFenetre = (controlleur.largeur_fenetre ,controlleur.hauteur_fenetre) 
-    #pygame.display.set_caption("Aquarium")
+
     # Ajout d'un fond d'écran 
-    #fond_Original = pygame.image.load("images/fond.jpg").convert() # 1200 x 800
     fenetre = Fenetre.Fenetre()
     fond=config["fond_fenetre"]["chemin"]
     tailleFenetre = (config["aquarium"]["affichage"]["largeur_fenetre"] , config["aquarium"]["affichage"]["hauteur_fenetre"])
@@ -33,7 +30,6 @@ if __name__ == "__main__":
     # Fenêtre --- 
 
     # --- Création de l'IHM
-    # TODO : changer les carrés en images 
     # Ajout d'un cadre pour le menu
     separation_ihm = pygame.draw.rect(fond, \
         (200, 180, 255), \
@@ -78,25 +74,12 @@ if __name__ == "__main__":
         controlleur.actionsPeriodiques()
 
         # --- DESSIN 
-        # for event in pygame.event.get():
-        #     if event.type == QUIT:
-        #         bContinue = False
 
-        #     if event.type == KEYDOWN:
-        #         if event.key == K_ESCAPE:
-        #             bContinue = False
-
-        #     if event.type == VIDEORESIZE:
-        #         fond = fond_Original
-        #         fond = pygame.transform.scale(fond, (event.w, event.h))
-        # fenetre.blit(fond, position_fond) # centrage par le calcul de la translation à faire
-        #pygame.display.flip()
-        #fenetre.fill((0,0,0))
         fenetre.redimension(fond)
         fenetre.fill((0,0,0))
-        fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
+        fenetre.blit(fond, (0,0))
         pygame.display.flip()
-        
+
         
         # affichage de la cagnotte 
         libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 

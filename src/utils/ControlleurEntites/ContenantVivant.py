@@ -1,11 +1,13 @@
 import random 
 import pygame
 import sys
-
+import utils.FileReader.ConfigSingleton as cs
 import utils.CoefDirection as cd
 
 # ====== abs
 class ContenantVivant() : 
+
+    config = cs.ConfigSingleton.getConfig()
 
     def __init__ (self, contenant_vivant):
 
@@ -47,12 +49,12 @@ class ContenantVivant() :
             bChange_direction = True
 
         # Changement de direction par contact avec la bordure
-        import utils.ControlleurJeu as cj
-        if x_actuel + largeur + (self.velocite * self.coef_direction[0]) > cj.ControlleurJeu.largeur_aquarium : 
+        
+        if x_actuel + largeur + (self.velocite * self.coef_direction[0]) > ContenantVivant.config["aquarium"]["affichage"]["largeur_aquarium"] : 
             bChange_direction = True
         if x_actuel + (self.velocite * self.coef_direction[0]) < 0 : 
             bChange_direction = True
-        if y_actuel + hauteur + (self.velocite * self.coef_direction[1]) > cj.ControlleurJeu.hauteur_aquarium : 
+        if y_actuel + hauteur + (self.velocite * self.coef_direction[1]) > ContenantVivant.config["aquarium"]["affichage"]["hauteur_aquarium"] : 
             bChange_direction = True
         if y_actuel + (self.velocite * self.coef_direction[1]) < 0 : 
             bChange_direction = True

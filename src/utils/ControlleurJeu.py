@@ -14,7 +14,14 @@ class ControlleurJeu() :
     
     # Pattern singleton 
     __INSTANCE_CONTROLLEUR_JEU = None
+    
+    def getControlleurJeu() : 
+        if ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU == None : 
+            ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU = ControlleurJeu()
+            print("Création du controlleur du jeu")
 
+        return ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU
+    
     def __init__(self) : 
 
         config = cs.ConfigSingleton.getConfig()
@@ -137,8 +144,7 @@ class ControlleurJeu() :
                 # récupération des sprites en dessous de la souris 
                 sprites_cliquees = [x for x in SpriteBase.sTabTousLesSprites if x.rect.collidepoint(position)]
                 if len(sprites_cliquees) > 0 : 
-                    # TODO : Peut être un observer à mettre ici
-                    # Action de la sprite cliquée
+                    # Action de la sprite cliquée qui est toujours la première dans la liste
                     sprites_cliquees[0].clique(self)
 
             if event.type == pygame.KEYDOWN:
@@ -146,14 +152,6 @@ class ControlleurJeu() :
                     bContinue = False
 
             if event.type == pygame.VIDEORESIZE:
-                pass
-                # fond = pygame.image.load("images/fond.jpg").convert()
-                # fond = pygame.transform.scale(fond, (event.w, event.h))
-                # fenetre.blit(fond, position_fond) # centrage par le calcul de la translation à faire
-        
-    def getControlleurJeu() : 
-        if ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU == None : 
-            ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU = ControlleurJeu()
-            print("Création du controlleur du jeu")
-
-        return ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU
+                
+                fond = pygame.image.load("images/fond.jpg").convert()
+                fond = pygame.transform.scale(fond, (event.w, event.h))
