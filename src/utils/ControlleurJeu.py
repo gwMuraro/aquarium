@@ -11,6 +11,9 @@ class ControlleurJeu() :
     #hauteur_fenetre = 600
     #largeur_aquarium = 800
     #hauteur_aquarium = 600
+    
+    # Pattern singleton 
+    __INSTANCE_CONTROLLEUR_JEU = None
 
     def __init__(self) : 
 
@@ -138,3 +141,9 @@ class ControlleurJeu() :
                     # Action de la sprite cliquée
                     sprites_cliquees[0].clique(self)
             
+    def getControlleurJeu() : 
+        if ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU == None : 
+            ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU = ControlleurJeu()
+            print("Création du controlleur du jeu")
+
+        return ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU
