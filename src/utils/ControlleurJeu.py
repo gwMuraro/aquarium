@@ -140,7 +140,17 @@ class ControlleurJeu() :
                     # TODO : Peut être un observer à mettre ici
                     # Action de la sprite cliquée
                     sprites_cliquees[0].clique(self)
-            
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == K_ESCAPE:
+                    bContinue = False
+
+            if event.type == pygame.VIDEORESIZE:
+                pass
+                # fond = pygame.image.load("images/fond.jpg").convert()
+                # fond = pygame.transform.scale(fond, (event.w, event.h))
+                # fenetre.blit(fond, position_fond) # centrage par le calcul de la translation à faire
+        
     def getControlleurJeu() : 
         if ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU == None : 
             ControlleurJeu.__INSTANCE_CONTROLLEUR_JEU = ControlleurJeu()
