@@ -1,6 +1,5 @@
 import pygame
-from pygame.locals import *
-import utils.CoefDirection as cd
+#from pygame.locals import *
 import utils.ControlleurJeu as ControlleurJeu
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
@@ -121,4 +120,3 @@ if __name__ == "__main__":
         # --- HORLOGE
         horloge.tick(controlleur.FPS)
         # HORLOGE ---
-
