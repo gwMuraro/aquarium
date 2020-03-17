@@ -24,10 +24,26 @@ Un pattern factory (ou usine) permet de centraliser la création de plusieurs ty
 
 ### Pattern MVC 
 
+Le pattern Modèle vue controleur est un des plus utilisé et structure entièrement notre projet. Il vise à séparer les strates de notre projet entre les traitements graphiques, les traitements des entités et le coordinateur de ces deux dernières. 
+
+Les poissons et autres vivants de notre aquarium sont controllés par le controlleur du jeu par leurs sprites. Les Sprites détiennent une instance des controlleurs de poissons. Ces controlleurs de poissons définissent le mouvement et les comportements de nos poissons. 
+
+En séparant successivement les strates, on gagne en stabilité dans le code, et dans les esprits. 
+
 ## L'esprit du projet 
 
 Dans l'idée le projet s'articule autour de plusieurs modules que nous allons développer. 
 
-### Le module de gestion des Sprite 
 ### Le module de controle des Entités
+
+Les entités ont des comportements de déplacement, d'apparition, de disparition et de gestion de la faim et de l'argent qu'ils génèrent. La création de ses entités doivent être le plus générique possible afin d'être instanciée facilement par le module de configuration. 
+
+### Le module de gestion des Sprite 
+
+Les sprites s'occupent de charger, décharger, afficher, supprimer les différentes entités de notre jeu. tout ce qui nécessite un rendu graphique est chargé par ce module.
+
 ### Le module de configuration
+
+Le module de configuration est très important. Ce n'est pas à proprement parlé un module, mais plutôt un fichier qui va influer tout notre projet. 
+
+La configuration contient les informations des objets qu'on va utiliser par famille (Bouton, poisson) avec 1 type -> 1 block. 
