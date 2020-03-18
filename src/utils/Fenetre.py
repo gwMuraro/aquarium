@@ -1,12 +1,10 @@
 import pygame
-#from pygame.locals import *
-#import utils.ControlleurJeu as ControlleurJeu
+from pygame.locals import *
+import utils.ControlleurJeu as ControlleurJeu
 import utils.FileReader.ConfigSingleton as cs
-#from PIL import Image
-#from resizeimage import resizeimage
 
-class Fenetre () : 
-    config = cs.ConfigSingleton.getConfig() 
+
+class Fenetre () :  
     
     def creationFenetre(self,tailleFenetre,fond):
         # --- Fenêtre  
