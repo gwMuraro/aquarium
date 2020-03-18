@@ -1,11 +1,11 @@
 import pygame
 from pygame.locals import *
 import utils.CoefDirection as cd
-import utils.ControlleurJeu as ControlleurJeu
+import utils.ControlleurJeu as cj
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
+import utils.ObjetsSprite.SpriteIHM as si
 import utils.FileReader.ConfigSingleton as cs
-
 import utils.Fenetre as Fenetre
 
 config = cs.ConfigSingleton.getConfig()
@@ -32,26 +32,34 @@ if __name__ == "__main__":
 
     # --- Création de l'IHM
     # Ajout d'un cadre pour le menu
-    separation_ihm = pygame.draw.rect(fond, \
-        (200, 180, 255), \
-        (controlleur.largeur_aquarium, \
-        0, \
-        controlleur.largeur_fenetre - controlleur.largeur_aquarium, \
-        controlleur.hauteur_fenetre))
 
-    # Ajout des labels de visualisation 
-    cadre_visu_informations = pygame.draw.rect(\
-        fond, \
-        (0,0,0), \
-        (controlleur.largeur_aquarium + 10, \
-        10, \
-        controlleur.largeur_fenetre - (controlleur.largeur_aquarium + 20), \
-        controlleur.hauteur_fenetre / 2))
+    # TODO : mettre les calculs de ratios en objets pour plus tard
+    def calcul_ihm(valeur_en_pourcent, valeur_reference = config["aquarium"]["affichage"]["largeur_fenetre"]) : 
+        return int((int(valeur_en_pourcent.split("%")[0]) * valeur_reference) / 100)
+
+    largeur_ref = config["aquarium"]["affichage"]["largeur_fenetre"]
+    hauteur_ref = config["aquarium"]["affichage"]["hauteur_fenetre"]
+    
+    separation_ihm = si.SpriteIHM(\
+        x = calcul_ihm(config["ihm"]["panneau_lateral"]["x"]), \
+        y = calcul_ihm(config["ihm"]["panneau_lateral"]["y"]), \
+        largeur = calcul_ihm(config["ihm"]["panneau_lateral"]["largeur"]), \
+        hauteur = calcul_ihm(config["ihm"]["panneau_lateral"]["hauteur"], hauteur_ref), \
+        chemin_image = config["ihm"]["panneau_lateral"]["chemin_image"])
+    
+    cadre_info = si.SpriteIHM(\
+        x = calcul_ihm(config["ihm"]["cadre_info"]["x"]), \
+        y = calcul_ihm(config["ihm"]["cadre_info"]["y"]), \
+        largeur = calcul_ihm(config["ihm"]["cadre_info"]["largeur"]), \
+        hauteur = calcul_ihm(config["ihm"]["cadre_info"]["hauteur"], hauteur_ref), \
+        chemin_image = config["ihm"]["cadre_info"]["chemin_image"])
 
     # Ajout des boutons d'ajout de vivants
     liste_boutons = list()
     for bouton in config["boutons_ajout"].keys() :
         liste_boutons.append(sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee=bouton))
+
+    
 
     #  Création de l'IHM ---
 
@@ -78,24 +86,25 @@ if __name__ == "__main__":
         fenetre.redimension(fond)
         fenetre.fill((0,0,0))
         #fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
-        pygame.display.flip()
+        # pygame.display.flip()
         
-        
+        sbase.SpriteBase.sTabTousLesSprites.draw(fenetre) 
+
         # affichage de la cagnotte 
         libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 
         fenetre.blit(libelle,(10, 10))
         
         # affichage des infos du poisson
         info_poisson = controlleur.informations_poisson
-        blank = 0
+        blank = calcul_ihm("3%", hauteur_ref)
         for line in info_poisson.splitlines() : 
-            blank += 20
-            lib = police.render(line, 1, (255, 255, 255))
-            fenetre.blit(lib, (controlleur.largeur_aquarium + 20, blank))
+            blank += calcul_ihm("3%", hauteur_ref)
+            lib = police.render(line, 1, (0, 0, 0))
+            fenetre.blit(lib, (controlleur.largeur_aquarium + calcul_ihm("3%"), blank))
 
         
         # affichage des sprites 
-        sbase.SpriteBase.sTabTousLesSprites.draw(fenetre) 
+        
         pygame.display.flip()
         
         # DESSIN ---

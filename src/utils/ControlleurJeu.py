@@ -142,7 +142,8 @@ class ControlleurJeu() :
                 position = pygame.mouse.get_pos()
 
                 # récupération des sprites en dessous de la souris 
-                sprites_cliquees = [x for x in SpriteBase.sTabTousLesSprites if x.rect.collidepoint(position)]
+                sprites_cliquees = [x for x in SpriteBase.sTabTousLesSprites if x.rect.collidepoint(position) and x.clicable()]
+                
                 if len(sprites_cliquees) > 0 : 
                     # Action de la sprite cliquée qui est toujours la première dans la liste
                     sprites_cliquees[0].clique(self)

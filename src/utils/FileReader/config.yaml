@@ -22,7 +22,22 @@ aquarium :
     bouton_ajout_crevette : 1
     bouton_ajout_piranha : 1
     bouton_ajout_gupy : 1
-    
+
+ihm : 
+  panneau_lateral : 
+    x : "70%"
+    y : "0%"
+    hauteur : "100%"
+    largeur : "30%"
+    chemin_image : "images/fond_panneau.jpg"
+
+  cadre_info : 
+    x : "71%"
+    y : "1%"
+    hauteur : "50%"
+    largeur : "28%"
+    chemin_image : "images/fond_panneau.jpg"
+
 bouton : &bouton_template
   x : 0
   y : 0
@@ -115,7 +130,6 @@ gupy : &poisson_template
     hauteur : 40
     liste_sprite_poisson : *sprite_template
 
-
 piranha :
   << : *poisson_template
   predation : 
@@ -206,3 +220,4 @@ meduse :
       << : *sprite_template
       vers_la_gauche : "images/meduse_vers_la_gauche.png"
       vers_la_droite : "images/meduse_vers_la_droite.png"
+

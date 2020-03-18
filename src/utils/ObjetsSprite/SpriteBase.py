@@ -31,4 +31,6 @@ class SpriteBase(pygame.sprite.Sprite) :
 
     def clique(self, contexte) :
         print("clique sur un sprite sans comportement")
-        
+    
+    def clicable(self) : 
+        return False

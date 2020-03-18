@@ -1,6 +1,6 @@
 from utils.ObjetsSprite.SpriteBase import *
 from utils.ObjetsSprite.CallBacks import *
-import utils.FileReader.ConfigSingleton as cs # TODO : remove et utiliser les kwargs
+import utils.FileReader.ConfigSingleton as cs 
 class SpriteBoutton(SpriteBase) : 
     
     def __init__(self, x=0, y=0, largeur=0, hauteur=0, chemin_image="") : 
@@ -9,6 +9,9 @@ class SpriteBoutton(SpriteBase) :
         
     def clique(self) :
         pass
+
+    def clicable(self) : 
+        return True
 
 class SpriteBouttonAjouter(SpriteBoutton) : 
 

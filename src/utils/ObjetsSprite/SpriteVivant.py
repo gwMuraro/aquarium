@@ -72,3 +72,5 @@ class SpriteVivant(SpriteBase) :
         print("indice = "+ str(contexte.indice_poisson_actuel))
         contexte.informations_poisson = self.poisson.getInformations()
 
+    def clicable(self) :
+        return True
