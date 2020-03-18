@@ -1,6 +1,7 @@
 import pygame
-#from pygame.locals import *
-import utils.ControlleurJeu as cj
+from pygame.locals import *
+import utils.CoefDirection as cd
+import utils.ControlleurJeu as ControlleurJeu
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
 import utils.FileReader.ConfigSingleton as cs
@@ -13,7 +14,7 @@ if __name__ == "__main__":
     #initialisation du framework
     pygame.init()
     police = pygame.font.SysFont("ubuntu", 15)
-    
+    config = cs.ConfigSingleton.getConfig()
 
     # Création du controlleur 
     controlleur = cj.ControlleurJeu.getControlleurJeu()
@@ -74,12 +75,11 @@ if __name__ == "__main__":
         controlleur.actionsPeriodiques()
 
         # --- DESSIN 
-
         fenetre.redimension(fond)
         fenetre.fill((0,0,0))
-        fenetre.blit(fond, (0,0))
+        #fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
         pygame.display.flip()
-
+        
         
         # affichage de la cagnotte 
         libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 

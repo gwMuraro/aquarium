@@ -12,10 +12,10 @@ class Fenetre () :
         # --- Fenêtre  
         #self.dimensions = self.config["aquarium"]["affichage"]*
         self.config = cs.ConfigSingleton.getConfig() 
-        self.fenetre = pygame.display.set_mode(tailleFenetre, pygame.RESIZABLE)
+        self.fenetre = pygame.display.set_mode(tailleFenetre, RESIZABLE)
         pygame.display.set_caption("Aquarium")
         # Ajout d'un fond d'écran 
-        fond = pygame.image.load(fond).convert()# 1200 x 800
+        fond =pygame.image.load(fond).convert()# 1200 x 800
         pygame.display.flip()
         return fond
 
@@ -30,5 +30,5 @@ class Fenetre () :
             if event.type == pygame.VIDEORESIZE :    
                 print(pygame.display.get_surface().get_size())
                 tailleFenetre = pygame.display.get_surface().get_size()
-                self.fond = self.fenetre.creationFenetre(tailleFenetre)
+                self.fenetre.blit(fond , tailleFenetre)
                 pygame.display.flip() 
