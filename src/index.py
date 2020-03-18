@@ -1,11 +1,12 @@
 import pygame
 from pygame.locals import *
-import utils.CoefDirection as cd
-import utils.ControlleurJeu as ControlleurJeu
+#import utils.CefDirection as cd
+from utils.CoefDirection import *
+import utils.ControlleurJeu as cj
 import utils.ObjetsSprite.SpriteBoutton as sb
 import utils.ObjetsSprite.SpriteBase as sbase
 import utils.FileReader.ConfigSingleton as cs
-
+#import utils.FileReader.ImageSingleton as imgS
 import utils.Fenetre as Fenetre
 
 config = cs.ConfigSingleton.getConfig()
@@ -23,13 +24,11 @@ if __name__ == "__main__":
 
     # Ajout d'un fond d'écran 
     fenetre = Fenetre.Fenetre()
-    fond=config["fond_fenetre"]["chemin"]
-    tailleFenetre = (config["aquarium"]["affichage"]["largeur_fenetre"] , config["aquarium"]["affichage"]["hauteur_fenetre"])
-    fond = fenetre.creationFenetre(tailleFenetre,fond)
-   
+    #fond =imgS.getImage(config["fond_fenetre"]["chemin"])
+    largeurFenetre = config["aquarium"]["affichage"]["largeur_fenetre"]  
+    hauteurFenetre = config["aquarium"]["affichage"]["hauteur_fenetre"]
+    fond = fenetre.creationFenetre((largeurFenetre,hauteurFenetre))
     
-    # Fenêtre --- 
-
     # --- Création de l'IHM
     # Ajout d'un cadre pour le menu
     separation_ihm = pygame.draw.rect(fond, \
@@ -38,8 +37,10 @@ if __name__ == "__main__":
         0, \
         controlleur.largeur_fenetre - controlleur.largeur_aquarium, \
         controlleur.hauteur_fenetre))
+   
 
     # Ajout des labels de visualisation 
+    
     cadre_visu_informations = pygame.draw.rect(\
         fond, \
         (0,0,0), \
@@ -75,11 +76,17 @@ if __name__ == "__main__":
         controlleur.actionsPeriodiques()
 
         # --- DESSIN 
-        fenetre.redimension(fond)
-        fenetre.fill((0,0,0))
-        #fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
-        pygame.display.flip()
-        
+        for event in pygame.event.get():
+            if event.type == pygame.VIDEORESIZE:
+                hauteurAjoute = fenetre.calculFenetre("3%" ,hauteurFenetre)
+                largeurAjoute = fenetre.calculFenetre("3%" ,largeurFenetre)
+                fond = fenetre.creationFenetre(((largeurFenetre+hauteurAjoute),(hauteurFenetre+largeurAjoute)))
+            #if event.typ == pygame.FULLSCREEN:
+            #    fond = fenetre.creationFenetre((1920,1080))   
+
+        fenetre.fill((114,100,239))
+        fenetre.blit(fond, (0,0)) # centrage par le calcul de la translation à faire
+        #pygame.display.flip()
         
         # affichage de la cagnotte 
         libelle = police.render("Cagnotte : " + str(controlleur.cagnotte), 1, (255, 255, 0)) 

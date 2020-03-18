@@ -1,3 +1,2 @@
 pygame
 PyYAML
-python-resize-image

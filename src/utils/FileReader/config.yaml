@@ -14,10 +14,10 @@ aquarium :
     # tortue : 2
     # sushi : 1
   affichage: 
-    largeur_fenetre : 1000
-    hauteur_fenetre : 600
-    largeur_aquarium : 700
-    hauteur_aquarium : 600
+    largeur_fenetre : 1920
+    hauteur_fenetre : 1080
+    largeur_aquarium : 1620
+    hauteur_aquarium : 1080
   boutons : 
     bouton_ajout_crevette : 1
     bouton_ajout_piranha : 1

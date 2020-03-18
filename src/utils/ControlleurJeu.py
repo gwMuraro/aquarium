@@ -153,5 +153,5 @@ class ControlleurJeu() :
 
             if event.type == pygame.VIDEORESIZE:
                 
-                fond = pygame.image.load("images/fond.jpg").convert()
+                fond = pygame.image.load("images/fond2.jpg").convert()
                 fond = pygame.transform.scale(fond, (event.w, event.h))
