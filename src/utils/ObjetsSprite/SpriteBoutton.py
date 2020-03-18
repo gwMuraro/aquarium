@@ -1,6 +1,8 @@
 from utils.ObjetsSprite.SpriteBase import *
 from utils.ObjetsSprite.CallBacks import *
 import utils.FileReader.ConfigSingleton as cs 
+import utils.IHM as IHM
+
 class SpriteBoutton(SpriteBase) : 
     
     def __init__(self, x=0, y=0, largeur=0, hauteur=0, chemin_image="") : 
@@ -15,19 +17,16 @@ class SpriteBoutton(SpriteBase) :
 
 class SpriteBouttonAjouter(SpriteBoutton) : 
 
-    # def __init__(self, x, y, largeur, hauteur, chemin_image, contexte, type) :
-    #def __init__(self, **kwargs) : 
     def __init__(self, contexte, tabDonnee) :
-        # TODO : remove et utiliser les kwargs
+
         data = cs.ConfigSingleton.getConfig()["boutons_ajout"]
-        #print({key:value for (key, value) in data["buton_ajout_gupy"].items()})
-        # exec(type_bouton + '(' + self + ', x=' data["x"]...  ')')
-        x = data[tabDonnee]["x"]
-        y = data[tabDonnee]["y"]
-        largeur = data[tabDonnee]["largeur"]
-        hauteur = data[tabDonnee]["hauteur"]
+
+        x = IHM.calcul_ihm(data[tabDonnee]["x"], IHM.largeur_ref)
+        y = IHM.calcul_ihm(data[tabDonnee]["y"], IHM.hauteur_ref)
+        largeur = IHM.calcul_ihm(data[tabDonnee]["largeur"], IHM.largeur_ref)
+        hauteur = IHM.calcul_ihm(data[tabDonnee]["hauteur"], IHM.hauteur_ref)
         chemin_image = data[tabDonnee]["chemin_image"]
-        # super.constructeur()
+
         SpriteBoutton.__init__(self, x, y, largeur, hauteur, chemin_image)
         
         # element de cet objet hérité

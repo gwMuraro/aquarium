@@ -1,8 +1,10 @@
 import random
 import sys
 from utils.ObjetsSprite.SpriteVivant import *
+from utils.ObjetsSprite.SpriteIHM import *
+from utils.ObjetsSprite.SpriteBase import *
 import utils.FileReader.ConfigSingleton as cs
-
+import utils.IHM as IHM
 
 
 class ControlleurJeu() :
@@ -48,6 +50,7 @@ class ControlleurJeu() :
         self.cagnotte = 100000
 
         self.vivants = list()
+        self.ihm = list()
 
         self.indice_poisson_actuel = None
         self.informations_poisson = " "
@@ -59,6 +62,22 @@ class ControlleurJeu() :
                 x = random.randint(0, self.largeur_aquarium - 60)
                 y = random.randint(0, self.hauteur_aquarium - 40)
                 self.vivants.append(SpriteVivant(x, y, config[clef]["affichage"]["largeur"], config[clef]["affichage"]["hauteur"], type_poisson=clef))
+
+    def creationIHM(self, largeur_ref = None, hauteur_ref = None) : 
+        config = cs.ConfigSingleton.getConfig()
+        if largeur_ref == None : 
+            largeur_ref = config["aquarium"]["affichage"]["largeur_fenetre"]
+        if hauteur_ref == None : 
+            hauteur_ref = config["aquarium"]["affichage"]["hauteur_fenetre"]
+            
+        for clef, valeur in config["ihm"].items() : 
+            self.ihm.append(SpriteIHM(\
+                x = IHM.calcul_ihm(valeur["x"], largeur_ref),\
+                y = IHM.calcul_ihm(valeur["y"], hauteur_ref),\
+                largeur = IHM.calcul_ihm(valeur["largeur"], largeur_ref),\
+                hauteur = IHM.calcul_ihm(valeur["hauteur"], hauteur_ref),\
+                chemin_image = valeur["chemin_image"]))
+
 
     def tuerLePoisson(self, poisson): 
         # mise à jour de l'affichage des informations du poisson 

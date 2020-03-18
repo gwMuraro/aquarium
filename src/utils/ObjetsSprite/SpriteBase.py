@@ -34,3 +34,4 @@ class SpriteBase(pygame.sprite.Sprite) :
     
     def clicable(self) : 
         return False
+

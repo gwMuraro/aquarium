@@ -41,14 +41,14 @@ ihm :
 bouton : &bouton_template
   x : 0
   y : 0
-  largeur : 100
-  hauteur : 48
+  largeur : "10%"
+  hauteur : "8%"
 
 boutons_ajout : 
   buton_ajout_gupy : 
     << : *bouton_template
-    x : 710
-    y : 542
+    x : "71%"
+    y : "90%"
     chemin_image : "images/poisson_vers_la_gauche.png"
     type_poisson : "gupy"
     type_bouton : "SpriteBouttonAjouter"
@@ -56,24 +56,24 @@ boutons_ajout :
 
   buton_ajout_piranha : 
     << : *bouton_template
-    x : 710
-    y : 470
+    x : "71%"
+    y : "80%"
     chemin_image : "images/piranha_vers_la_gauche.png"
     type_poisson : "piranha"
     type_bouton : "SpriteBouttonAjouter"
 
   bouton_ajout_crevette : 
     << : *bouton_template
-    x : 710
-    y : 420
+    x : "71%"
+    y : "70%"
     chemin_image : "images/crevette_vers_la_gauche.png"
     type_poisson : "crevette"
     type_bouton : "SpriteBouttonAjouter"
 
   bouton_ajout_meduse : 
     << : *bouton_template
-    x : 710
-    y : 360
+    x : "71%"
+    y : "60%"
     chemin_image : "images/meduse_vers_la_gauche.png"
     type_poisson : "meduse"
     type_bouton : "SpriteBouttonAjouter"
@@ -81,16 +81,16 @@ boutons_ajout :
 
   bouton_ajout_tortue : 
     << : *bouton_template
-    x : 810
-    y : 542
+    x : "81%"
+    y : "80%"
     chemin_image : "images/tortue_vers_la_gauche.png"
     type_poisson : "tortue"
     type_bouton : "SpriteBouttonAjouter"
 
   bouton_ajout_sushi : 
     << : *bouton_template
-    x : 810
-    y : 480
+    x : "81%"
+    y : "90%"
     chemin_image : "images/sushi.png"
     type_poisson : "sushi"
     type_bouton : "SpriteBouttonAjouter"

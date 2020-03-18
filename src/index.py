@@ -7,7 +7,7 @@ import utils.ObjetsSprite.SpriteBase as sbase
 import utils.ObjetsSprite.SpriteIHM as si
 import utils.FileReader.ConfigSingleton as cs
 import utils.Fenetre as Fenetre
-
+import utils.IHM as IHM
 config = cs.ConfigSingleton.getConfig()
 
 if __name__ == "__main__":
@@ -33,32 +33,18 @@ if __name__ == "__main__":
     # --- Création de l'IHM
     # Ajout d'un cadre pour le menu
 
-    # TODO : mettre les calculs de ratios en objets pour plus tard
-    def calcul_ihm(valeur_en_pourcent, valeur_reference = config["aquarium"]["affichage"]["largeur_fenetre"]) : 
-        return int((int(valeur_en_pourcent.split("%")[0]) * valeur_reference) / 100)
-
     largeur_ref = config["aquarium"]["affichage"]["largeur_fenetre"]
     hauteur_ref = config["aquarium"]["affichage"]["hauteur_fenetre"]
     
-    separation_ihm = si.SpriteIHM(\
-        x = calcul_ihm(config["ihm"]["panneau_lateral"]["x"]), \
-        y = calcul_ihm(config["ihm"]["panneau_lateral"]["y"]), \
-        largeur = calcul_ihm(config["ihm"]["panneau_lateral"]["largeur"]), \
-        hauteur = calcul_ihm(config["ihm"]["panneau_lateral"]["hauteur"], hauteur_ref), \
-        chemin_image = config["ihm"]["panneau_lateral"]["chemin_image"])
-    
-    cadre_info = si.SpriteIHM(\
-        x = calcul_ihm(config["ihm"]["cadre_info"]["x"]), \
-        y = calcul_ihm(config["ihm"]["cadre_info"]["y"]), \
-        largeur = calcul_ihm(config["ihm"]["cadre_info"]["largeur"]), \
-        hauteur = calcul_ihm(config["ihm"]["cadre_info"]["hauteur"], hauteur_ref), \
-        chemin_image = config["ihm"]["cadre_info"]["chemin_image"])
+    # Ajout de l'IHM 
+    controlleur.creationIHM(largeur_ref=largeur_ref, hauteur_ref=hauteur_ref)
 
     # Ajout des boutons d'ajout de vivants
     liste_boutons = list()
     for bouton in config["boutons_ajout"].keys() :
         liste_boutons.append(sb.SpriteBouttonAjouter(contexte=controlleur, tabDonnee=bouton))
 
+    
     
 
     #  Création de l'IHM ---
@@ -96,11 +82,11 @@ if __name__ == "__main__":
         
         # affichage des infos du poisson
         info_poisson = controlleur.informations_poisson
-        blank = calcul_ihm("3%", hauteur_ref)
+        blank = IHM.calcul_ihm("3%", hauteur_ref)
         for line in info_poisson.splitlines() : 
-            blank += calcul_ihm("3%", hauteur_ref)
+            blank += IHM.calcul_ihm("3%", hauteur_ref)
             lib = police.render(line, 1, (0, 0, 0))
-            fenetre.blit(lib, (controlleur.largeur_aquarium + calcul_ihm("3%"), blank))
+            fenetre.blit(lib, (controlleur.largeur_aquarium + IHM.calcul_ihm("3%", largeur_ref), blank))
 
         
         # affichage des sprites 
@@ -112,3 +98,4 @@ if __name__ == "__main__":
         # --- HORLOGE
         horloge.tick(controlleur.FPS)
         # HORLOGE ---
+5
