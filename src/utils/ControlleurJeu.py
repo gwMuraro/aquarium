@@ -61,7 +61,11 @@ class ControlleurJeu() :
             for i in range(valeur): 
                 x = random.randint(0, self.largeur_aquarium - 60)
                 y = random.randint(0, self.hauteur_aquarium - 40)
-                self.vivants.append(SpriteVivant(x, y, config[clef]["affichage"]["largeur"], config[clef]["affichage"]["hauteur"], type_poisson=clef))
+                self.vivants.append(\
+                    SpriteVivant(x, y, \
+                        IHM.calcul_ihm(config[clef]["affichage"]["largeur"], config["aquarium"]["affichage"]["largeur_fenetre"]), \
+                        IHM.calcul_ihm(config[clef]["affichage"]["hauteur"], config["aquarium"]["affichage"]["hauteur_fenetre"]), \
+                        type_poisson=clef))
 
     def creationIHM(self, largeur_ref = None, hauteur_ref = None) : 
         config = cs.ConfigSingleton.getConfig()
@@ -99,9 +103,12 @@ class ControlleurJeu() :
     # TODO : Pattern factory peut être ici
     def ajouteVivant(self, type_poisson="gupy") : 
         config = cs.ConfigSingleton.getConfig()
-        x = random.randint(0, self.largeur_aquarium - config[type_poisson]["affichage"]["largeur"])
-        y = random.randint(0, self.hauteur_aquarium - config[type_poisson]["affichage"]["hauteur"])
-        self.vivants.append(SpriteVivant(x, y, config[type_poisson]["affichage"]["largeur"], config[type_poisson]["affichage"]["hauteur"], type_poisson=type_poisson))
+        x = random.randint(0, self.largeur_aquarium - IHM.calcul_ihm(config[type_poisson]["affichage"]["largeur"], IHM.largeur_ref))
+        y = random.randint(0, self.hauteur_aquarium - IHM.calcul_ihm(config[type_poisson]["affichage"]["hauteur"], IHM.hauteur_ref))
+        self.vivants.append(SpriteVivant(x, y, \
+                        IHM.calcul_ihm(config[type_poisson]["affichage"]["largeur"], IHM.largeur_ref), \
+                        IHM.calcul_ihm(config[type_poisson]["affichage"]["hauteur"], IHM.hauteur_ref), \
+                        type_poisson=type_poisson))
 
     def actionsPeriodiques(self) : 
 
@@ -168,7 +175,7 @@ class ControlleurJeu() :
                     sprites_cliquees[0].clique(self)
 
             if event.type == pygame.KEYDOWN:
-                if event.key == K_ESCAPE:
+                if event.key == pygame.K_ESCAPE:
                     bContinue = False
 
             if event.type == pygame.VIDEORESIZE:

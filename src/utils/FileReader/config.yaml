@@ -1,10 +1,6 @@
 fond_fenetre : &image_template
   chemin : "images/fond2.jpg"
-
-liste_sprite : &sprite_template
-  vers_la_gauche : "images/poisson_vers_la_gauche.png"
-  vers_la_droite : "images/poisson_vers_la_droite.png"
-
+  
 aquarium : 
   vivants : 
     gupy : 10 
@@ -126,9 +122,11 @@ gupy : &poisson_template
   affichage : &affichage_simple
     x : 300
     y : 300
-    largeur : 60
-    hauteur : 40
-    liste_sprite_poisson : *sprite_template
+    largeur : "6%"
+    hauteur : "7%"
+  liste_sprite_poisson : 
+    vers_la_gauche : "images/poisson_vers_la_gauche.png"
+    vers_la_droite : "images/poisson_vers_la_droite.png"
 
 piranha :
   << : *poisson_template
@@ -142,30 +140,18 @@ piranha :
     faim : 69
     seuil_appetance : 30.0
     valeur_nutritive : 30
-  affichage : 
-    x : 100
-    y : 100
-    largeur : 60
-    hauteur : 40 
-    liste_sprite_poisson : 
-      << : *sprite_template
-      vers_la_gauche : "images/piranha_vers_la_gauche.png"
-      vers_la_droite : "images/piranha_vers_la_droite.png"
+  liste_sprite_poisson : 
+    vers_la_gauche : "images/piranha_vers_la_gauche.png"
+    vers_la_droite : "images/piranha_vers_la_droite.png"
 
 crevette : 
   << : *poisson_template
   predation :
     est_proie : false 
-    est_predateur : false
-  affichage : 
-    x : 100
-    y : 100
-    largeur : 50
-    hauteur : 30 
-    liste_sprite_poisson : 
-      << : *sprite_template
-      vers_la_gauche : "images/crevette_vers_la_gauche.png"
-      vers_la_droite : "images/crevette_vers_la_droite.png"
+    est_predateur : false 
+  liste_sprite_poisson :
+    vers_la_gauche : "images/crevette_vers_la_gauche.png"
+    vers_la_droite : "images/crevette_vers_la_droite.png"
 
 tortue : 
   << : *poisson_template
@@ -174,15 +160,9 @@ tortue :
     est_predateur : true 
     proies :
       - meduses
-  affichage : 
-    x : 100
-    y : 100
-    largeur : 70
-    hauteur : 50 
-    liste_sprite_poisson : 
-      << : *sprite_template
-      vers_la_gauche : "images/tortue_vers_la_droite.png"
-      vers_la_droite : "images/tortue_vers_la_gauche.png"
+  liste_sprite_poisson : 
+    vers_la_gauche : "images/tortue_vers_la_droite.png"
+    vers_la_droite : "images/tortue_vers_la_gauche.png"
 
 
 sushi : 
@@ -195,16 +175,9 @@ sushi :
     faim : 10
     seuil_appetance : 0
     valeur_nutritive : 0
-
-  affichage : 
-    x : 100
-    y : 100
-    largeur : 70
-    hauteur : 50 
-    liste_sprite_poisson : 
-      << : *sprite_template
-      vers_la_gauche : "images/sushi.png"
-      vers_la_droite : "images/sushi.png"
+  liste_sprite_poisson :
+    vers_la_gauche : "images/sushi.png"
+    vers_la_droite : "images/sushi.png"
 
 meduse : 
   << : *poisson_template
@@ -214,10 +187,9 @@ meduse :
   affichage : 
     x : 100
     y : 100
-    largeur : 50
-    hauteur : 97 
-    liste_sprite_poisson : 
-      << : *sprite_template
-      vers_la_gauche : "images/meduse_vers_la_gauche.png"
-      vers_la_droite : "images/meduse_vers_la_droite.png"
+    largeur : "6%"
+    hauteur : "16%" 
+  liste_sprite_poisson : 
+    vers_la_gauche : "images/meduse_vers_la_gauche.png"
+    vers_la_droite : "images/meduse_vers_la_droite.png"
 

@@ -98,4 +98,3 @@ if __name__ == "__main__":
         # --- HORLOGE
         horloge.tick(controlleur.FPS)
         # HORLOGE ---
-5

@@ -12,13 +12,13 @@ class SpriteVivant(SpriteBase) :
 
         SpriteBase.__init__(self, x, y, config["affichage"]["largeur"], \
             config["affichage"]["hauteur"], \
-            config["affichage"]["liste_sprite_poisson"]["vers_la_gauche"])
+            config["liste_sprite_poisson"]["vers_la_gauche"])
         
         self.type_poisson = type_poisson 
         self.poisson = Poisson(type_poisson)
         self.directions_gauche = config["deplacement"]["direction"]["gauche"]
         self.directions_droite = config["deplacement"]["direction"]["droite"]
-        self.chemin_images = config["affichage"]["liste_sprite_poisson"]
+        self.chemin_images = config["liste_sprite_poisson"]
         
         # Gestion de la prédation
         if config["predation"]["est_predateur"] == True : 
